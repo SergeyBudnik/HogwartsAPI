@@ -30,7 +30,7 @@ public class DatabaseConfig {
             dataSourceConfig.setJdbcUrl(config.getDatabaseUrl());
             dataSourceConfig.setUsername(config.getDatabaseUsername());
             dataSourceConfig.setPassword(config.getDatabasePassword());
-            dataSourceConfig.setMaximumPoolSize(100);
+            dataSourceConfig.setMaximumPoolSize(10);
             dataSourceConfig.setMaxLifetime(60000);
         }
 

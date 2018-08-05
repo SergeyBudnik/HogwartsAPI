@@ -6,6 +6,7 @@ import com.bdev.hogwarts_api.data.model.student.StudentGroupReferenceModel;
 import com.bdev.hogwarts_api.data.model.student.StudentModel;
 import com.bdev.hogwarts_api.data.model.student.StudentPhoneModel;
 
+import static com.bdev.hogwarts_api.utils.EncodingUtils.toBase64;
 import static java.util.stream.Collectors.toList;
 
 public class StudentDtoConverter {
@@ -14,7 +15,7 @@ public class StudentDtoConverter {
         
         studentModel.setId(student.getId());
         studentModel.setGroupIds(student.getGroupIds().stream().map(it -> convertGroupIds(studentModel, it)).collect(toList()));
-        studentModel.setName(student.getName());
+        studentModel.setName(toBase64(student.getName()));
         studentModel.setPhones(student.getPhones().stream().map(it -> convertPhone(studentModel, it)).collect(toList()));
         studentModel.setEmails(student.getEmails().stream().map(it -> convertEmail(studentModel, it)).collect(toList()));
         studentModel.setEducationLevel(student.getEducationLevel());
@@ -37,7 +38,7 @@ public class StudentDtoConverter {
         StudentEmailModel studentEmailModel = new StudentEmailModel();
         
         studentEmailModel.setStudent(studentModel);
-        studentEmailModel.setValue(email);
+        studentEmailModel.setValue(toBase64(email));
         
         return studentEmailModel;
     }
@@ -46,7 +47,7 @@ public class StudentDtoConverter {
         StudentPhoneModel studentPhoneModel = new StudentPhoneModel();
 
         studentPhoneModel.setStudent(studentModel);
-        studentPhoneModel.setValue(phone);
+        studentPhoneModel.setValue(toBase64(phone));
 
         return studentPhoneModel;
     }

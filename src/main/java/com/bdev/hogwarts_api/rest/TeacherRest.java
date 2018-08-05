@@ -25,14 +25,25 @@ public class TeacherRest extends CommonRest {
         );
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Teacher getTeacher(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
             @PathVariable long id
     ) {
-        return teacherRestService.getTeacher(
+        return teacherRestService.getTeacherById(
                 getUserInfo(authToken),
                 id
+        );
+    }
+
+    @GetMapping("/login/{login}")
+    public Teacher getTeacherByLogin(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
+            @PathVariable String login
+    ) {
+        return teacherRestService.getTeacherByLogin(
+                getUserInfo(authToken),
+                login
         );
     }
 

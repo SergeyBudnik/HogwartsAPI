@@ -26,12 +26,22 @@ public class TeacherRestServiceImpl implements TeacherRestService {
 
     @Transactional(readOnly = true)
     @Override
-    public Teacher getTeacher(
+    public Teacher getTeacherById(
             MunicipaliUserInfo userInfo,
             long id
     ) {
-        return teacherService.getTeacher(id)
+        return teacherService.getTeacherById(id)
                 .orElseThrow(() -> new HttpEntityNotFoundException("Teacher with id '%d' does not exist", id));
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Teacher getTeacherByLogin(
+            MunicipaliUserInfo userInfo,
+            String login
+    ) {
+        return teacherService.getTeacherByLogin(login)
+                .orElseThrow(() -> new HttpEntityNotFoundException("Teacher with login '%s' does not exist", login));
     }
 
     @Transactional

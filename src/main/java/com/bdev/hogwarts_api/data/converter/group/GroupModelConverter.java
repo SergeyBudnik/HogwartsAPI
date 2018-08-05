@@ -4,9 +4,11 @@ import com.bdev.hogwarts_api.data.dto.group.Group;
 import com.bdev.hogwarts_api.data.dto.group.GroupLesson;
 import com.bdev.hogwarts_api.data.model.group.GroupLessonModel;
 import com.bdev.hogwarts_api.data.model.group.GroupModel;
+import com.bdev.hogwarts_api.utils.EncodingUtils;
 
 import java.util.stream.Collectors;
 
+import static com.bdev.hogwarts_api.utils.EncodingUtils.fromBase64;
 import static java.util.stream.Collectors.toList;
 
 public class GroupModelConverter {
@@ -14,8 +16,8 @@ public class GroupModelConverter {
         return Group.builder()
                 .id(groupModel.getId())
                 .cabinetId(groupModel.getCabinetId())
-                .name(groupModel.getName())
-                .bookName(groupModel.getBookName())
+                .name(fromBase64(groupModel.getName()))
+                .bookName(fromBase64(groupModel.getBookName()))
                 .lessons(groupModel.getLessons().stream().map(GroupModelConverter::convertLesson).collect(toList()))
                 .age(groupModel.getAge())
                 .educationLevel(groupModel.getEducationLevel())

@@ -4,6 +4,7 @@ import com.bdev.hogwarts_api.dao.TeacherDao;
 import com.bdev.hogwarts_api.data.converter.teacher.TeacherDtoConverter;
 import com.bdev.hogwarts_api.data.converter.teacher.TeacherModelConverter;
 import com.bdev.hogwarts_api.data.dto.teacher.Teacher;
+import com.bdev.hogwarts_api.utils.EncodingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +33,16 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Optional<Teacher> getTeacher(long id) {
+    public Optional<Teacher> getTeacherById(long id) {
         return Optional.ofNullable(
                 teacherDao.findOne(id)
+        ).map(TeacherModelConverter::convert);
+    }
+
+    @Override
+    public Optional<Teacher> getTeacherByLogin(String login) {
+        return Optional.ofNullable(
+                teacherDao.findFirstByLogin(EncodingUtils.toBase64(login))
         ).map(TeacherModelConverter::convert);
     }
 

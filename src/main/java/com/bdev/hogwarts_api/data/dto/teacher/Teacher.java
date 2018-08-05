@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 public class Teacher {
     private Long id;
+    @NonNull private String login;
     @NonNull private String name;
     @NonNull private TeacherType type;
     @NonNull private List<String> phones;
@@ -20,6 +21,7 @@ public class Teacher {
     @JsonCreator
     public static Teacher create(
             @JsonProperty("id") Long id,
+            @JsonProperty("login") String login,
             @JsonProperty("name") String name,
             @JsonProperty("type") TeacherType type,
             @JsonProperty("phones") List<String> phones,
@@ -27,6 +29,7 @@ public class Teacher {
     ) {
         return Teacher.builder()
                 .id(id)
+                .login(login)
                 .name(name)
                 .type(type)
                 .phones(phones)

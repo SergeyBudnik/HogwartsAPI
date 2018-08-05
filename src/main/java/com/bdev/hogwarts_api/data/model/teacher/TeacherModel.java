@@ -15,6 +15,9 @@ public class TeacherModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "LOGIN")
+    private String login;
+
     @Column(name = "NAME")
     private String name;
 

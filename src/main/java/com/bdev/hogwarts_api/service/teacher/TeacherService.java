@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface TeacherService {
     boolean exists(long id);
     List<Teacher> getAllTeachers();
-    Optional<Teacher> getTeacher(long id);
+    Optional<Teacher> getTeacherById(long id);
+    Optional<Teacher> getTeacherByLogin(String login);
     long createTeacher(Teacher teacher);
     void editTeacher(Teacher teacher);
     void deleteTeacher(long id);
