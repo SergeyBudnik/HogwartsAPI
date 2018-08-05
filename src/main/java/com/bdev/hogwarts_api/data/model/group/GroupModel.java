@@ -2,6 +2,7 @@ package com.bdev.hogwarts_api.data.model.group;
 
 import com.bdev.hogwarts_api.data.dto.EducationLevel;
 import com.bdev.hogwarts_api.data.dto.Age;
+import com.bdev.hogwarts_api.data.dto.group.GroupType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class GroupModel {
 
     @Column(name = "BOOK_NAME")
     private String bookName;
+
+    @Column(name = "GROUP_TYPE")
+    private GroupType type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<GroupLessonModel> lessons;

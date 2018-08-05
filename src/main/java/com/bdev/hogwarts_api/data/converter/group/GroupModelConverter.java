@@ -18,6 +18,7 @@ public class GroupModelConverter {
                 .cabinetId(groupModel.getCabinetId())
                 .name(fromBase64(groupModel.getName()))
                 .bookName(fromBase64(groupModel.getBookName()))
+                .type(groupModel.getType())
                 .lessons(groupModel.getLessons().stream().map(GroupModelConverter::convertLesson).collect(toList()))
                 .age(groupModel.getAge())
                 .educationLevel(groupModel.getEducationLevel())

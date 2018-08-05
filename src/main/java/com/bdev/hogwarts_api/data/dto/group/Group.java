@@ -16,6 +16,7 @@ public class Group {
     private Long id;
     @NonNull private String name;
     @NonNull private String bookName;
+    @NonNull private GroupType type;
     @NonNull private Long cabinetId;
     @NonNull private List<GroupLesson> lessons;
     @NonNull private Age age;
@@ -27,6 +28,7 @@ public class Group {
             @JsonProperty("id") Long id,
             @JsonProperty("name") String name,
             @JsonProperty("bookName") String bookName,
+            @JsonProperty("type") GroupType type,
             @JsonProperty("cabinetId") Long cabinetId,
             @JsonProperty("lessons") List<GroupLesson> lessons,
             @JsonProperty("age") Age age,
@@ -37,6 +39,7 @@ public class Group {
                 .id(id)
                 .name(name)
                 .bookName(bookName)
+                .type(type)
                 .cabinetId(cabinetId)
                 .lessons(lessons)
                 .age(age)

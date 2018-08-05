@@ -19,6 +19,7 @@ public class GroupDtoConverter {
         groupModel.setCabinetId(group.getCabinetId());
         groupModel.setName(toBase64(group.getName()));
         groupModel.setBookName(toBase64(group.getBookName()));
+        groupModel.setType(group.getType());
         groupModel.setLessons(group.getLessons().stream().map(it -> convertLesson(groupModel, it)).collect(toList()));
         groupModel.setAge(group.getAge());
         groupModel.setEducationLevel(group.getEducationLevel());
