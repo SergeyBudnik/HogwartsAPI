@@ -20,8 +20,8 @@ public class GroupModel {
     @Column(name = "CABINET_ID")
     private long cabinetId;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "MANAGER_ID")
+    private long managerId;
 
     @Column(name = "BOOK_NAME")
     private String bookName;

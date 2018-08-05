@@ -14,10 +14,10 @@ import java.util.List;
 @Data
 public class Group {
     private Long id;
-    @NonNull private String name;
     @NonNull private String bookName;
     @NonNull private GroupType type;
     @NonNull private Long cabinetId;
+    @NonNull private Long managerId;
     @NonNull private List<GroupLesson> lessons;
     @NonNull private Age age;
     @NonNull private EducationLevel educationLevel;
@@ -26,10 +26,10 @@ public class Group {
     @JsonCreator
     public static Group create(
             @JsonProperty("id") Long id,
-            @JsonProperty("name") String name,
             @JsonProperty("bookName") String bookName,
             @JsonProperty("type") GroupType type,
             @JsonProperty("cabinetId") Long cabinetId,
+            @JsonProperty("managerId") Long managerId,
             @JsonProperty("lessons") List<GroupLesson> lessons,
             @JsonProperty("age") Age age,
             @JsonProperty("educationLevel") EducationLevel educationLevel,
@@ -37,10 +37,10 @@ public class Group {
     ) {
         return Group.builder()
                 .id(id)
-                .name(name)
                 .bookName(bookName)
                 .type(type)
                 .cabinetId(cabinetId)
+                .managerId(managerId)
                 .lessons(lessons)
                 .age(age)
                 .educationLevel(educationLevel)
