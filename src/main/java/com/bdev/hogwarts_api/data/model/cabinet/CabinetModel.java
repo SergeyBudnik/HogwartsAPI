@@ -17,5 +17,6 @@ public class CabinetModel {
     @Column(name = "NAME")
     private String name;
     @Column(name = "CABINET_TYPE")
+    @Enumerated(EnumType.STRING)
     private CabinetType cabinetType;
 }

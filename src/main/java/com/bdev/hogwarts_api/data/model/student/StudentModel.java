@@ -26,10 +26,13 @@ public class StudentModel {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentGroupReferenceModel> groupIds;
     @Column(name = "EDUCATION_LEVEL")
+    @Enumerated(EnumType.STRING)
     private EducationLevel educationLevel;
     @Column(name = "AGE")
+    @Enumerated(EnumType.STRING)
     private Age age;
     @Column(name = "REFERRAL_SOURCE")
+    @Enumerated(EnumType.STRING)
     private StudentReferralSource referralSource;
 
 }

@@ -17,6 +17,7 @@ public class StudentStatusModel {
     @Column(name = "STUDENT_ID")
     private Long studentId;
     @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
     private StudentStatusType status;
     @Column(name = "CREATION_TIME")
     private Long creationTime;

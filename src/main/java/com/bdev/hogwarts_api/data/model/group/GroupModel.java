@@ -27,6 +27,7 @@ public class GroupModel {
     private String bookName;
 
     @Column(name = "GROUP_TYPE")
+    @Enumerated(EnumType.STRING)
     private GroupType type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)

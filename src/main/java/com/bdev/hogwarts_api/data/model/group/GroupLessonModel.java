@@ -23,9 +23,12 @@ public class GroupLessonModel {
     private long teacherId;
 
     @Column(name = "DAY")
+    @Enumerated(EnumType.STRING)
     private DayOfWeek day;
     @Column(name = "START_TIME")
+    @Enumerated(EnumType.STRING)
     private LessonTime startTime;
     @Column(name = "FINISH_TIME")
+    @Enumerated(EnumType.STRING)
     private LessonTime finishTime;
 }

@@ -17,6 +17,7 @@ public class StudentAttendanceModel {
     @Column(name = "STUDENT_ID")
     private Long studentId;
     @Column(name = "ATTENDANCE_TYPE")
+    @Enumerated(EnumType.STRING)
     private StudentAttendanceType type;
     @Column(name = "ATTENDANCE_TIME")
     private Long time;
