@@ -11,6 +11,7 @@ public class StudentStatusDtoConverter {
         studentStatusModel.setStudentId(studentStatus.getStudentId());
         studentStatusModel.setStatus(studentStatus.getStatus());
         studentStatusModel.setCreationTime(studentStatus.getCreationTime());
+        studentStatusModel.setActionTime(studentStatus.getActionTime());
 
         return studentStatusModel;
     }

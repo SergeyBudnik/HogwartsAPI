@@ -10,6 +10,7 @@ public class StudentStatusModelConverter {
                 .studentId(studentStatusModel.getStudentId())
                 .status(studentStatusModel.getStatus())
                 .creationTime(studentStatusModel.getCreationTime())
+                .actionTime(studentStatusModel.getActionTime())
                 .build();
     }
 }

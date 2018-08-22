@@ -20,4 +20,6 @@ public class StudentStatusModel {
     private StudentStatusType status;
     @Column(name = "CREATION_TIME")
     private Long creationTime;
+    @Column(name = "ACTION_TIME")
+    private Long actionTime;
 }

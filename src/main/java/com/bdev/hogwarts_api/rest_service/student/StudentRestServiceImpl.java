@@ -57,6 +57,7 @@ public class StudentRestServiceImpl implements StudentRestService {
                 .builder()
                 .studentId(studentId)
                 .creationTime(new Date().getTime())
+                .actionTime(-1L)
                 .status(student.getStatusType())
                 .build()
         );
@@ -79,22 +80,6 @@ public class StudentRestServiceImpl implements StudentRestService {
         }
 
         studentService.editStudent(student);
-
-        Optional<StudentStatus> currentStudentStatusOptional = studentStatusService.getStudentStatus(student.getId());
-
-        boolean statusChanged =
-                !currentStudentStatusOptional.isPresent() ||
-                currentStudentStatusOptional.get().getStatus() != student.getStatusType();
-
-        if (statusChanged) {
-            studentStatusService.changeStudentStatus(StudentStatus
-                    .builder()
-                    .studentId(student.getId())
-                    .creationTime(new Date().getTime())
-                    .status(student.getStatusType())
-                    .build()
-            );
-        }
     }
 
     @Transactional
