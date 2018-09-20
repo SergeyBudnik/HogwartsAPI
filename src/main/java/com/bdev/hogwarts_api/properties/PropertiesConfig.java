@@ -76,10 +76,10 @@ public class PropertiesConfig {
     }
 
     private static Config getInstanceConfig() {
-        String configHome = System.getenv("CONFIG_HOME");
+        String configHome = System.getProperty("CONFIG_HOME");
 
         if (configHome == null) {
-            configHome = System.getProperty("CONFIG_HOME");
+            configHome = System.getenv("CONFIG_HOME");
         }
 
         String configFilePath =

@@ -1,0 +1,35 @@
+.advantage-title {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-family: hogwartsBold;
+}
+
+.advantage-items {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.advantage-item {
+    flex-direction: column;
+    width: 33%;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    display: flex;
+    background: #f5f5f5;
+    border: 1px solid #eeeeee;
+    padding: 20px;
+}
+
+.advantage-item-title {
+    font-family: hogwartsBold;
+    font-size: 18px;
+    color: #2d5f97;
+}
+
+.advantage-item-text {
+    font-family: hogwartsRegular;
+    font-size: 16px;
+}
