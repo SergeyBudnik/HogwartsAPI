@@ -1,7 +1,5 @@
 package com.bdev.hogwarts_api.data.dto.events;
 
-import com.bdev.hogwarts_api.data.dto.Age;
-import com.bdev.hogwarts_api.data.dto.EducationLevel;
 import com.bdev.hogwarts_api.data.dto.student.StudentReferralSource;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,8 +15,6 @@ public class EventParticipant {
     @NonNull private String name;
     @NonNull private EventParticipantStatus status;
     @NonNull private String phone;
-    @NonNull private EducationLevel educationLevel;
-    @NonNull private Age age;
     @NonNull private StudentReferralSource referralSource;
 
     @JsonCreator
@@ -28,8 +24,6 @@ public class EventParticipant {
             @JsonProperty("name") String name,
             @JsonProperty("status") EventParticipantStatus status,
             @JsonProperty("phone") String phone,
-            @JsonProperty("educationLevel") EducationLevel educationLevel,
-            @JsonProperty("age") Age age,
             @JsonProperty("referralSource") StudentReferralSource referralSource
     ) {
         return EventParticipant
@@ -39,8 +33,6 @@ public class EventParticipant {
                 .name(name)
                 .status(status)
                 .phone(phone)
-                .educationLevel(educationLevel)
-                .age(age)
                 .referralSource(referralSource)
                 .build();
     }

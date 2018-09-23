@@ -51,7 +51,7 @@ public class EventsRestServiceImpl implements EventsRestService {
             throw new HttpEntityNotFoundException("Event with id '%d' does not exist", speakingClub.getId());
         }
 
-        speakingClubService.create(speakingClub);
+        speakingClubService.update(speakingClub);
     }
 
     @Override

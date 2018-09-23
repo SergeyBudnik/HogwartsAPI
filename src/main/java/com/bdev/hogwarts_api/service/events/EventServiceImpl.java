@@ -4,6 +4,7 @@ import com.bdev.hogwarts_api.dao.EventDao;
 import com.bdev.hogwarts_api.data.converter.events.EventDtoConverter;
 import com.bdev.hogwarts_api.data.converter.events.EventModelConverter;
 import com.bdev.hogwarts_api.data.dto.events.Event;
+import com.bdev.hogwarts_api.data.dto.events.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,15 @@ public class EventServiceImpl implements EventService {
                 .stream()
                 .map(EventModelConverter::convert)
                 .collect(toList());
+    }
+
+    @Override
+    public Optional<Event> getLatestEvent(EventType eventType) {
+        return eventDao
+                .getAllByEventType(eventType)
+                .stream()
+                .findFirst()
+                .map(EventModelConverter::convert);
     }
 
     @Override

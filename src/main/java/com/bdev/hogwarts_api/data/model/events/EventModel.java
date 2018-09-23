@@ -1,6 +1,7 @@
 package com.bdev.hogwarts_api.data.model.events;
 
 import com.bdev.hogwarts_api.data.dto.common.LessonTime;
+import com.bdev.hogwarts_api.data.dto.events.EventType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +15,9 @@ public class EventModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "EVENT_TYPE")
+    @Enumerated(EnumType.STRING)
+    private EventType eventType;
     @Column(name = "NAME")
     private String name;
     @Column(name = "CABINET_ID")

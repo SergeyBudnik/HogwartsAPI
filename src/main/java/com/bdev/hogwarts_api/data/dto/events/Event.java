@@ -13,7 +13,6 @@ public class Event {
     private Long id;
     @NonNull private EventType eventType;
     @NonNull private String name;
-    @NonNull private String description;
     @NonNull private Long cabinetId;
     @NonNull private Long teacherId;
     @NonNull private Long date;
