@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 @Service
 public class EventsControllerServiceImpl implements EventsControllerService {
@@ -16,12 +16,7 @@ public class EventsControllerServiceImpl implements EventsControllerService {
 
     @Override
     @Transactional(readOnly = true)
-    public Event getCurrentEvent(EventType eventType) {
-        return eventService
-                .getAll()
-                .stream()
-                .filter(it -> it.getEventType() == eventType)
-                .findAny()
-                .orElseThrow(EntityNotFoundException::new);
+    public Optional<Event> getCurrentEvent(EventType eventType) {
+        return eventService.getLatestEvent(eventType);
     }
 }

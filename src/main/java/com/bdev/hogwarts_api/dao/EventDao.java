@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EventDao extends JpaRepository<EventModel, Long> {
-    List<EventModel> getAllByEventType(EventType eventType);
+    List<EventModel> getAllByEventTypeAndDateGreaterThan(EventType eventType, long after);
 }

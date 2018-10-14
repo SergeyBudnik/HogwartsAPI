@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/speaking-club/desktop/speaking-club.css"/>"/>
 
-    <script src="../scripts/script.js"></script>
+    <script src="<c:url value="/resources/scripts/script.js"/>"></script>
 
     <style>
         .header-desktop {
@@ -91,7 +91,7 @@
 
         <br>
 
-        <button id="send" class="button" onclick="sendRequest()">Отправить</button>
+        <button id="send" class="button" onclick="sendRequest(${event.id})">Отправить</button>
 
         <br>
         <br>

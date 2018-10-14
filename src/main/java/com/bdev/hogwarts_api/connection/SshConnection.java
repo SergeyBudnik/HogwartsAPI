@@ -1,6 +1,5 @@
 package com.bdev.hogwarts_api.connection;
 
-import com.bdev.hogwarts_api.properties.PropertiesConfig;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import lombok.SneakyThrows;

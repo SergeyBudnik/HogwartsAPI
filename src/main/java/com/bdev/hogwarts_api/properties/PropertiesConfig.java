@@ -16,7 +16,9 @@ public class PropertiesConfig {
     static {
         Config instanceConfig = getInstanceConfig();
 
-        config = SmartConfigProperties.getConfig("prod");
+        String env = instanceConfig.getString("env");
+
+        config = SmartConfigProperties.getConfig(env);
 
         override(config.getDatabaseUrlConfig(), instanceConfig);
         override(config.getDatabaseUsernameConfig(), instanceConfig);

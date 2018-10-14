@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Optional;
+
 @ApiIgnore
 @Controller
 public class EventsController {
@@ -26,16 +28,23 @@ public class EventsController {
     @Autowired
     private EventsControllerService eventsControllerService;
 
-    @RequestMapping("/{eventType}/{platform}")
+    @RequestMapping("/pages/events/{eventType}/{platform}")
     public ModelAndView open(
             @PathVariable EventType eventType,
             @PathVariable Platform platform
     ) {
-        Event event = eventsControllerService.getCurrentEvent(eventType);
+        Optional<Event> eventOptional = eventsControllerService.getCurrentEvent(eventType);
 
-        return new ModelAndView(
-                "event/" + platform.getPath() + "/event", "event",
-                event
-        );
+        return eventOptional
+            .map(event -> getEventModel(platform, event))
+            .orElseGet(() -> getNoEventModel(platform));
+    }
+
+    private ModelAndView getEventModel(Platform platform, Event event) {
+        return new ModelAndView("event/" + platform.getPath(), "event", event);
+    }
+
+    private ModelAndView getNoEventModel(Platform platform) {
+        return new ModelAndView("no-event/" + platform.getPath());
     }
 }

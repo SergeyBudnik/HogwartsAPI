@@ -5,13 +5,17 @@ import com.bdev.hogwarts_api.data.converter.events.EventDtoConverter;
 import com.bdev.hogwarts_api.data.converter.events.EventModelConverter;
 import com.bdev.hogwarts_api.data.dto.events.Event;
 import com.bdev.hogwarts_api.data.dto.events.EventType;
+import com.bdev.hogwarts_api.data.model.events.EventModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import static java.lang.String.format;
+import static java.util.Comparator.comparingLong;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -31,9 +35,9 @@ public class EventServiceImpl implements EventService {
     @Override
     public Optional<Event> getLatestEvent(EventType eventType) {
         return eventDao
-                .getAllByEventType(eventType)
+                .getAllByEventTypeAndDateGreaterThan(eventType, new Date().getTime())
                 .stream()
-                .findFirst()
+                .min(comparingLong(EventModel::getDate))
                 .map(EventModelConverter::convert);
     }
 

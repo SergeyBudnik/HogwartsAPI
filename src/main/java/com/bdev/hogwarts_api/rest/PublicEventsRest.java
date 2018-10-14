@@ -1,7 +1,9 @@
 package com.bdev.hogwarts_api.rest;
 
+import com.bdev.hogwarts_api.data.dto.events.Event;
 import com.bdev.hogwarts_api.data.dto.events.EventParticipant;
 import com.bdev.hogwarts_api.data.dto.events.EventParticipantStatus;
+import com.bdev.hogwarts_api.data.dto.events.EventType;
 import com.bdev.hogwarts_api.data.dto.student.StudentReferralSource;
 import com.bdev.hogwarts_api.rest_service.public_events.PublicEventsRestService;
 import io.swagger.annotations.Api;
@@ -22,6 +24,13 @@ public class PublicEventsRest {
 
     @Autowired
     private PublicEventsRestService publicEventsRestService;
+
+    @GetMapping("/current/{eventType}")
+    public Event getCurrentEvent(
+            @PathVariable EventType eventType
+    ) {
+        return publicEventsRestService.getCurrentEvent(eventType);
+    }
 
     @PostMapping("/{eventId}/participant")
     public void addEventParticipant(

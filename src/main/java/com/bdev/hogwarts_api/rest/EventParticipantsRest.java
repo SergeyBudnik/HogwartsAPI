@@ -16,7 +16,27 @@ public class EventParticipantsRest extends CommonRest {
     @Autowired
     private EventParticipantsRestService eventParticipantsRestService;
 
-    @GetMapping("/{eventId}")
+    @GetMapping("")
+    public List<EventParticipant> getAllParticipants(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken
+    ) {
+        return eventParticipantsRestService.getAllParticipants(
+                getUserInfo(authToken)
+        );
+    }
+
+    @GetMapping("/{eventParticipantId}")
+    public EventParticipant getEventParticipant(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
+            @PathVariable long eventParticipantId
+    ) {
+        return eventParticipantsRestService.getEventParticipant(
+                getUserInfo(authToken),
+                eventParticipantId
+        );
+    }
+
+    @GetMapping("/event/{eventId}")
     public List<EventParticipant> getEventParticipants(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
             @PathVariable long eventId
@@ -24,6 +44,39 @@ public class EventParticipantsRest extends CommonRest {
         return eventParticipantsRestService.getEventParticipants(
                 getUserInfo(authToken),
                 eventId
+        );
+    }
+
+    @PostMapping("")
+    public long createEventParticipant(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
+            @RequestBody EventParticipant eventParticipant
+    ) {
+        return eventParticipantsRestService.createEventParticipant(
+                getUserInfo(authToken),
+                eventParticipant
+        );
+    }
+
+    @PutMapping("")
+    public void editEventParticipant(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
+            @RequestBody EventParticipant eventParticipant
+    ) {
+        eventParticipantsRestService.editEventParticipant(
+                getUserInfo(authToken),
+                eventParticipant
+        );
+    }
+
+    @DeleteMapping("/{eventParticipantId}")
+    public void deleteEventParticipant(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken,
+            @PathVariable long eventParticipantId
+    ) {
+        eventParticipantsRestService.deleteEventParticipant(
+                getUserInfo(authToken),
+                eventParticipantId
         );
     }
 }
