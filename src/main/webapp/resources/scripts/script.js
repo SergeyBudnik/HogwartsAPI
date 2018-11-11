@@ -9,7 +9,7 @@ function sendRequest(eventId) {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://hogwarts-engschool.ru:8443/HogwartsAPI/public/events/' + eventId + '/participants', false);
+    xhr.open('POST', 'https://hogwarts-engschool.ru:8443/HogwartsAPI/public/events/' + eventId + '/participant', false);
     xhr.setRequestHeader('Content-type', 'application/json');
 
     xhr.send(JSON.stringify({

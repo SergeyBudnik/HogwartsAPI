@@ -23,6 +23,11 @@ public class StudentStatusRestServiceImpl implements StudentStatusRestService {
     @Autowired
     private StudentStatusService studentStatusService;
 
+    @Override
+    public List<StudentStatus> getStudentsStatuses(MunicipaliUserInfo userInfo) {
+        return studentStatusService.getAllStudentsStatuses();
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<StudentStatus> getLatestStudentsStatuses(MunicipaliUserInfo userInfo) {

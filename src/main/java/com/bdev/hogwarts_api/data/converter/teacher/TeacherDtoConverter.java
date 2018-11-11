@@ -1,17 +1,15 @@
 package com.bdev.hogwarts_api.data.converter.teacher;
 
 import com.bdev.hogwarts_api.data.dto.teacher.Teacher;
+import com.bdev.hogwarts_api.data.dto.teacher.TeacherAvailability;
+import com.bdev.hogwarts_api.data.model.teacher.TeacherAvailabilityModel;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherEmailModel;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherModel;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherPhoneModel;
-import com.bdev.hogwarts_api.utils.EncodingUtils;
-import lombok.Data;
-
-import java.util.stream.Collectors;
 
 import static com.bdev.hogwarts_api.utils.EncodingUtils.toBase64;
+import static java.util.stream.Collectors.toList;
 
-@Data
 public class TeacherDtoConverter {
     public static TeacherModel convert(Teacher teacher) {
         TeacherModel teacherModel = new TeacherModel();
@@ -20,8 +18,9 @@ public class TeacherDtoConverter {
         teacherModel.setLogin(toBase64(teacher.getLogin()));
         teacherModel.setName(toBase64(teacher.getName()));
         teacherModel.setType(teacher.getType());
-        teacherModel.setEmails(teacher.getEmails().stream().map(it -> convertEmail(teacherModel, it)).collect(Collectors.toList()));
-        teacherModel.setPhones(teacher.getPhones().stream().map(it -> convertPhone(teacherModel, it)).collect(Collectors.toList()));
+        teacherModel.setEmails(teacher.getEmails().stream().map(it -> convertEmail(teacherModel, it)).collect(toList()));
+        teacherModel.setPhones(teacher.getPhones().stream().map(it -> convertPhone(teacherModel, it)).collect(toList()));
+        teacherModel.setAvailability(teacher.getAvailability().stream().map(it -> convertAvailability(teacherModel, it)).collect(toList()));
 
         return teacherModel;
     }
@@ -44,4 +43,13 @@ public class TeacherDtoConverter {
         return teacherPhoneModel;
     }
 
+    private static TeacherAvailabilityModel convertAvailability(TeacherModel teacherModel, TeacherAvailability availability) {
+        TeacherAvailabilityModel teacherAvailabilityModel = new TeacherAvailabilityModel();
+
+        teacherAvailabilityModel.setTeacher(teacherModel);
+        teacherAvailabilityModel.setDayOfWeek(availability.getDayOfWeek());
+        teacherAvailabilityModel.setTime(availability.getTime());
+
+        return teacherAvailabilityModel;
+    }
 }

@@ -24,6 +24,9 @@ public class PropertiesConfig {
         override(config.getDatabaseUsernameConfig(), instanceConfig);
         override(config.getDatabasePasswordConfig(), instanceConfig);
         override(config.getSecurityServiceRootUrlConfig(), instanceConfig);
+
+        override(config.getVkGroupIdConfig(), instanceConfig);
+        override(config.getVkGroupSecretKeyConfig(), instanceConfig);
     }
 
     private static void override(SmartConfigValue value, Config instanceConfig) {

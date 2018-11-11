@@ -18,6 +18,7 @@ public class EventParticipant {
     @NonNull private EventParticipantStatus status;
     @NonNull private String phone;
     @NonNull private StudentReferralSource referralSource;
+    @NonNull private Boolean enlisted;
 
     @JsonCreator
     public static EventParticipant create(
@@ -26,7 +27,8 @@ public class EventParticipant {
             @JsonProperty("name") String name,
             @JsonProperty("status") EventParticipantStatus status,
             @JsonProperty("phone") String phone,
-            @JsonProperty("referralSource") StudentReferralSource referralSource
+            @JsonProperty("referralSource") StudentReferralSource referralSource,
+            @JsonProperty("enlisted") Boolean enlisted
     ) {
         return EventParticipant
                 .builder()
@@ -36,6 +38,7 @@ public class EventParticipant {
                 .status(status)
                 .phone(phone)
                 .referralSource(referralSource)
+                .enlisted(enlisted)
                 .build();
     }
 }

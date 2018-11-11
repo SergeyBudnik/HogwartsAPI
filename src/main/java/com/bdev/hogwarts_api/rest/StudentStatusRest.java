@@ -17,7 +17,16 @@ public class StudentStatusRest extends CommonRest {
     @Autowired
     private StudentStatusRestService studentStatusRestService;
 
-    @GetMapping("")
+    @GetMapping("/all")
+    public List<StudentStatus> getStudentsStatuses(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken
+    ) {
+        return studentStatusRestService.getStudentsStatuses(
+                getUserInfo(authToken)
+        );
+    }
+
+    @GetMapping("/latest")
     public List<StudentStatus> getStudentsLatestStatuses(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authToken
     ) {

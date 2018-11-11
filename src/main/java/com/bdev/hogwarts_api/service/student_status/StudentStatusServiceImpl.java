@@ -23,6 +23,16 @@ public class StudentStatusServiceImpl implements StudentStatusService {
     private StudentStatusDao studentStatusDao;
 
     @Override
+    public List<StudentStatus> getAllStudentsStatuses() {
+        return studentStatusDao
+                .findAll()
+                .stream()
+                .map(StudentStatusModelConverter::convert)
+                .sorted(comparing(StudentStatus::getCreationTime))
+                .collect(toList());
+    }
+
+    @Override
     public List<StudentStatus> getAllStudentStatuses(long studentId) {
         return studentStatusDao
                 .findAllByStudentId(studentId)

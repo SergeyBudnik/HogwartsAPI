@@ -1,11 +1,11 @@
 @font-face {
     font-family: hogwartsBold;
-    src: url('/resources/fonts/sourcesansprosemibold.ttf');
+    src: url('../../resources/fonts/sourcesansprosemibold.ttf');
 }
 
 @font-face {
     font-family: hogwartsRegular;
-    src: url('/resources/fonts/sourcesanspro.ttf');
+    src: url('../../resources/fonts/sourcesanspro.ttf');
 }
 
 .body-container {

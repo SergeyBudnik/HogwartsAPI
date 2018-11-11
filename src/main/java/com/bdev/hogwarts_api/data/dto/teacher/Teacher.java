@@ -17,6 +17,7 @@ public class Teacher {
     @NonNull private TeacherType type;
     @NonNull private List<String> phones;
     @NonNull private List<String> emails;
+    @NonNull private List<TeacherAvailability> availability;
 
     @JsonCreator
     public static Teacher create(
@@ -25,7 +26,8 @@ public class Teacher {
             @JsonProperty("name") String name,
             @JsonProperty("type") TeacherType type,
             @JsonProperty("phones") List<String> phones,
-            @JsonProperty("emails") List<String> emails
+            @JsonProperty("emails") List<String> emails,
+            @JsonProperty("availability") List<TeacherAvailability> availability
     ) {
         return Teacher.builder()
                 .id(id)
@@ -34,6 +36,7 @@ public class Teacher {
                 .type(type)
                 .phones(phones)
                 .emails(emails)
+                .availability(availability)
                 .build();
     }
 }

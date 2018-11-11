@@ -30,4 +30,7 @@ public class TeacherModel {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherPhoneModel> phones;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TeacherAvailabilityModel> availability;
 }

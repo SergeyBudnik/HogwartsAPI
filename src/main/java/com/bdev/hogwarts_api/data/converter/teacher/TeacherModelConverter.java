@@ -1,6 +1,7 @@
 package com.bdev.hogwarts_api.data.converter.teacher;
 
 import com.bdev.hogwarts_api.data.dto.teacher.Teacher;
+import com.bdev.hogwarts_api.data.dto.teacher.TeacherAvailability;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherEmailModel;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherModel;
 import com.bdev.hogwarts_api.data.model.teacher.TeacherPhoneModel;
@@ -22,6 +23,15 @@ public class TeacherModelConverter {
                 )
                 .phones(teacherModel.getPhones().stream()
                         .map(it -> fromBase64(it.getValue()))
+                        .collect(toList())
+                )
+                .availability(teacherModel.getAvailability().stream()
+                        .map(it -> TeacherAvailability
+                                .builder()
+                                .dayOfWeek(it.getDayOfWeek())
+                                .time(it.getTime())
+                                .build()
+                        )
                         .collect(toList())
                 )
                 .build();

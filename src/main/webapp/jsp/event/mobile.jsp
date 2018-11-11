@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/speaking-club/desktop/speaking-club.css"/>"/>
 
-    <script src="../scripts/script.js"></script>
+    <script src="<c:url value="/resources/scripts/script.js"/>"></script>
 
     <style>
         .header-desktop {
-            font-size: 36px;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -36,7 +36,8 @@
         </div>
 
         <br>
-        <br>
+
+        <fmt:setTimeZone value="GMT+3" scope="session"/>
 
         <jsp:useBean id="dateValue" class="java.util.Date"/>
 
@@ -72,41 +73,29 @@
         </div>
 
         <br>
-        <br>
 
         <div class="header-secondary">
-            Оставьте заявку
-            <br>
-            Мы перезвоним Вам в течение 10 минут
+            Оставить заявку
         </div>
 
         <br>
-        <br>
 
-        <input id="name" class="input" placeholder="Введите имя">
-
-        <br>
-
-        <input id="phone" class="input" placeholder="Введите телефон">
+        <input id="name" class="input" placeholder="Имя и фамилия">
 
         <br>
 
-        <button id="send" class="button" onclick="sendRequest()">Отправить</button>
+        <input id="phone" class="input" placeholder="Телефон">
 
         <br>
+
+        <button id="send" class="button" onclick="sendRequest(${event.id})">Отправить</button>
+
         <br>
 
         <div class="policy">Нажимая кнопку отправить,</div>
         <div class="policy">вы соглашаетесь с нашей <a href="https://vk.com/dev/uprivacy">политикой конфиденциальности</a></div>
 
         <br>
-        <br>
-
-        <div class="header-secondary">
-            Хотите узнать о нас больше?
-            <br>
-            <a href="https://vk.com/hogwarts_engschool">Наша группа в VK</a>
-        </div>
     </div>
     <div class="column">
     </div>

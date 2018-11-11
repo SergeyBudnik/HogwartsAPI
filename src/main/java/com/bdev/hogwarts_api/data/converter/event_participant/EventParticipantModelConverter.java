@@ -14,6 +14,7 @@ public class EventParticipantModelConverter {
                 .status(eventParticipantModel.getStatus())
                 .phone(eventParticipantModel.getPhone())
                 .referralSource(eventParticipantModel.getReferralSource())
+                .enlisted(eventParticipantModel.getEnlisted())
                 .build();
     }
 }

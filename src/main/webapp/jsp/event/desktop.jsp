@@ -38,6 +38,8 @@
         <br>
         <br>
 
+        <fmt:setTimeZone value="GMT+3" scope="session"/>
+
         <jsp:useBean id="dateValue" class="java.util.Date"/>
 
         <jsp:setProperty name="dateValue" property="time" value="${event.date}"/>
@@ -75,19 +77,17 @@
         <br>
 
         <div class="header-secondary">
-            Оставьте заявку
-            <br>
-            Мы перезвоним Вам в течение 10 минут
+            Оставить заявку
         </div>
 
         <br>
         <br>
 
-        <input id="name" class="input" placeholder="Введите имя">
+        <input id="name" class="input" placeholder="Имя и фамилия">
 
         <br>
 
-        <input id="phone" class="input" placeholder="Введите телефон">
+        <input id="phone" class="input" placeholder="Телефон">
 
         <br>
 

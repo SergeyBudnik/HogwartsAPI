@@ -27,4 +27,6 @@ public class EventParticipantModel {
     @Column(name = "REFERRAL_SOURCE")
     @Enumerated(EnumType.STRING)
     private StudentReferralSource referralSource;
+    @Column(name = "ENLISTED")
+    private Boolean enlisted;
 }

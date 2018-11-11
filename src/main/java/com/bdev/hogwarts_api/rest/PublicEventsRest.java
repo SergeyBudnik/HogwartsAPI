@@ -45,6 +45,7 @@ public class PublicEventsRest {
                         .status(EventParticipantStatus.REQUEST)
                         .phone(request.phone)
                         .referralSource(request.referralSource)
+                        .enlisted(false)
                         .build()
         );
     }

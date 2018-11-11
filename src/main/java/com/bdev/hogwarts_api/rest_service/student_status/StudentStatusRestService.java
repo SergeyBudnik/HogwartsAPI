@@ -7,6 +7,7 @@ import com.bdev.hogwarts_api.data.dto.student.StudentStatusType;
 import java.util.List;
 
 public interface StudentStatusRestService {
+    List<StudentStatus> getStudentsStatuses(MunicipaliUserInfo userInfo);
     List<StudentStatus> getLatestStudentsStatuses(MunicipaliUserInfo userInfo);
     List<StudentStatus> getStudentStatuses(MunicipaliUserInfo userInfo, long studentId);
     void changeStudentStatus(MunicipaliUserInfo userInfo, long studentId, StudentStatusType status, long actionTime);

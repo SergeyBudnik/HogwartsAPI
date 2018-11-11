@@ -14,6 +14,7 @@ public class EventParticipantDtoConverter {
         eventParticipantModel.setStatus(eventParticipant.getStatus());
         eventParticipantModel.setPhone(eventParticipant.getPhone());
         eventParticipantModel.setReferralSource(eventParticipant.getReferralSource());
+        eventParticipantModel.setEnlisted(eventParticipant.getEnlisted());
 
         return eventParticipantModel;
     }
