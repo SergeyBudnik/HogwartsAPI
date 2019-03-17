@@ -2,11 +2,13 @@ package com.bdev.hogwarts_api.data.dto.group
 
 import com.bdev.hogwarts_api.data.dto.common.DayOfWeek
 import com.bdev.hogwarts_api.data.dto.common.LessonTime
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
-class GroupLesson(
-    var id: Long? = null,
-    var day: DayOfWeek = DayOfWeek.MONDAY,
-    var startTime: LessonTime? = LessonTime.T_07_00,
-    var finishTime: LessonTime = LessonTime.T_07_00,
-    var teacherId: Long = 0
+class GroupLesson @JsonCreator constructor(
+        @JsonProperty("id") val id: Long?,
+        @JsonProperty("day") val day: DayOfWeek,
+        @JsonProperty("startTime") val startTime: LessonTime,
+        @JsonProperty("finishTime") val finishTime: LessonTime,
+        @JsonProperty("teacherId") val teacherId: Long
 )

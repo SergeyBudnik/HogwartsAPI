@@ -8,6 +8,7 @@ object StudentPaymentModelConverter {
         return StudentPayment(
                 id = studentPaymentModel.id,
                 studentId = studentPaymentModel.studentId ?: throw RuntimeException(),
+                teacherId = studentPaymentModel.teacherId ?: throw RuntimeException(),
                 amount = studentPaymentModel.amount ?: throw RuntimeException(),
                 time = studentPaymentModel.time ?: throw RuntimeException()
         )

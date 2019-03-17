@@ -1,8 +1,15 @@
 package com.bdev.hogwarts_api.data.dto.student
 
-class StudentAttendance(
-    var id: Long? = null,
-    var studentId: Long = 0,
-    var type: StudentAttendanceType = StudentAttendanceType.VISITED,
-    var time: Long = 0
+import com.bdev.hogwarts_api.data.dto.group.GroupType
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+
+class StudentAttendance @JsonCreator constructor(
+        @JsonProperty("id") val id: Long?,
+        @JsonProperty("studentId") val studentId: Long,
+        @JsonProperty("type") val type: StudentAttendanceType,
+        @JsonProperty("groupType") val groupType: GroupType,
+        @JsonProperty("studentsInGroup") val studentsInGroup: Int,
+        @JsonProperty("startTime") val startTime: Long,
+        @JsonProperty("finishTime") val finishTime: Long
 )

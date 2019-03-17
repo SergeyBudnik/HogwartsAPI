@@ -1,11 +1,9 @@
 package com.bdev.hogwarts_api.data.model.teacher
 
 import com.bdev.hogwarts_api.data.dto.teacher.TeacherType
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_TEACHER")
 open class TeacherModel {

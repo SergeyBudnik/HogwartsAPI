@@ -2,11 +2,9 @@ package com.bdev.hogwarts_api.data.model.teacher
 
 import com.bdev.hogwarts_api.data.dto.common.DayOfWeek
 import com.bdev.hogwarts_api.data.dto.common.LessonTime
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_TEACHER_AVAILABILITY")
 open class TeacherAvailabilityModel {

@@ -28,8 +28,14 @@ open class EventServiceImpl : EventService {
                 ?.let { EventModelConverter.convert(it) }
     }
 
+    override fun getAllFutureEvents(eventType: EventType): List<Event> {
+        return eventDao
+                .getAllByEventTypeAndDateGreaterThan(eventType, Date().time)
+                .map { EventModelConverter.convert(it) }
+    }
+
     override fun getById(id: Long): Event? {
-        return eventDao.getOne(id)
+        return eventDao.findOne(id)
                 ?.let { EventModelConverter.convert(it) }
     }
 

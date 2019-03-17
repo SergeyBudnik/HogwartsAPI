@@ -64,6 +64,18 @@
     box-sizing: border-box;
 }
 
+.row-label {
+    width: 250px;
+    font-size: 16px;
+    color: #000000;
+    font-family: hogwartsRegular;
+    border-radius: 3px;
+    border: 1px solid #aaaaaa;
+    padding: 10px 20px;
+    background: #b9b9b9;
+    text-align: center;
+}
+
 .button {
     width: 100%;
     font-size: 16px;
@@ -78,6 +90,21 @@
 
 .button:hover {
     opacity: 0.9;
+}
+
+.button-secondary {
+    font-size: 16px;
+    color: #164361;
+    font-family: hogwartsRegular;
+    border-radius: 3px;
+    border: 1px solid #3498db;
+    padding: 10px 20px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.button-secondary:hover {
+    opacity: 0.5;
 }
 
 .policy {

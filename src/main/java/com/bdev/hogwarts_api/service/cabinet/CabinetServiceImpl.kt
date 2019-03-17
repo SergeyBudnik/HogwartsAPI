@@ -23,7 +23,7 @@ open class CabinetServiceImpl : CabinetService {
 
     override fun getCabinet(id: Long): Cabinet? {
         return cabinetDao
-                .getOne(id)
+                .findOne(id)
                 ?.let { CabinetModelConverter.convert(it) }
     }
 

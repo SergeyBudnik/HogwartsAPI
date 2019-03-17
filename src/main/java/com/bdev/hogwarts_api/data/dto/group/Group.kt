@@ -2,15 +2,16 @@ package com.bdev.hogwarts_api.data.dto.group
 
 import com.bdev.hogwarts_api.data.dto.Age
 import com.bdev.hogwarts_api.data.dto.EducationLevel
+import com.fasterxml.jackson.annotation.JsonProperty
 
 class Group(
-    var id: Long? = null,
-    var bookName: String = "",
-    var type: GroupType = GroupType.GROUP,
-    var cabinetId: Long = 0,
-    var managerId: Long = 0,
-    var lessons: List<GroupLesson> = emptyList(),
-    var age: Age = Age.ADULT,
-    var educationLevel: EducationLevel = EducationLevel.BEGINNER,
-    var color: String = "ffffff"
+        @JsonProperty("id") val id: Long?,
+        @JsonProperty("bookName") val bookName: String,
+        @JsonProperty("type") val type: GroupType,
+        @JsonProperty("cabinetId") val cabinetId: Long,
+        @JsonProperty("managerId") val managerId: Long,
+        @JsonProperty("lessons") val lessons: List<GroupLesson>,
+        @JsonProperty("age") val age: Age,
+        @JsonProperty("educationLevel") val educationLevel: EducationLevel,
+        @JsonProperty("color") val color: String
 )

@@ -24,7 +24,7 @@ class GroupServiceImpl : GroupService {
     }
 
     override fun getGroup(id: Long): Group? {
-        return groupDao.getOne(id)?.let { GroupModelConverter.convert(it) }
+        return groupDao.findOne(id)?.let { GroupModelConverter.convert(it) }
     }
 
     override fun createGroup(group: Group): Long {

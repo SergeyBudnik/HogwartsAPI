@@ -20,7 +20,7 @@ class EventParticipantServiceImpl : EventParticipantService {
 
     override fun getEventParticipant(eventParticipantId: Long): EventParticipant? {
         return eventParticipantDao
-                .getOne(eventParticipantId)
+                .findOne(eventParticipantId)
                 ?.let { EventParticipantModelConverter.convert(it) }
     }
 

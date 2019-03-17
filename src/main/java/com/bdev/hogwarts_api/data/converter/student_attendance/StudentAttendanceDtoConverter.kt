@@ -10,7 +10,10 @@ object StudentAttendanceDtoConverter {
         studentAttendanceModel.id = studentAttendance.id
         studentAttendanceModel.studentId = studentAttendance.studentId
         studentAttendanceModel.type = studentAttendance.type
-        studentAttendanceModel.time = studentAttendance.time
+        studentAttendanceModel.groupType = studentAttendance.groupType
+        studentAttendanceModel.studentsInGroup = studentAttendance.studentsInGroup
+        studentAttendanceModel.startTime = studentAttendance.startTime
+        studentAttendanceModel.finishTime = studentAttendance.finishTime
 
         return studentAttendanceModel
     }

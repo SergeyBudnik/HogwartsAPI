@@ -1,14 +1,16 @@
 package com.bdev.hogwarts_api.data.dto.events
 
 import com.bdev.hogwarts_api.data.dto.common.LessonTime
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
-class Event(
-    var id: Long? = null,
-    var eventType: EventType = EventType.OPEN_LESSON,
-    var name: String = "",
-    var cabinetId: Long = 0,
-    var teacherId: Long = 0,
-    var date: Long = 0,
-    var startTime: LessonTime = LessonTime.T_07_00,
-    var finishTime: LessonTime = LessonTime.T_07_00
+class Event @JsonCreator constructor(
+        @JsonProperty("id")val id: Long? = null,
+        @JsonProperty("eventType") val eventType: EventType,
+        @JsonProperty("name") val name: String,
+        @JsonProperty("cabinetId") val cabinetId: Long,
+        @JsonProperty("teacherId") val teacherId: Long,
+        @JsonProperty("date") val date: Long,
+        @JsonProperty("startTime") val startTime: LessonTime,
+        @JsonProperty("finishTime") val finishTime: LessonTime
 )

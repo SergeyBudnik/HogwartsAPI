@@ -9,4 +9,6 @@ interface EventsRestService {
     fun create(userInfo: MunicipaliUserInfo, speakingClub: Event): Long
     fun update(userInfo: MunicipaliUserInfo, speakingClub: Event)
     fun delete(userInfo: MunicipaliUserInfo, id: Long)
+
+    fun generateWeekTests(userInfo: MunicipaliUserInfo)
 }

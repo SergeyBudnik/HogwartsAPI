@@ -25,7 +25,7 @@ class StudentServiceImpl : StudentService {
 
     override fun getStudentById(studentId: Long): Student? {
         return studentDao
-                .getOne(studentId)
+                .findOne(studentId)
                 ?.let { getStudent(it) }
     }
 

@@ -1,10 +1,7 @@
 package com.bdev.hogwarts_api.data.model.student
 
-import lombok.Data
-
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_STUDENT_PHONE")
 open class StudentPhoneModel {

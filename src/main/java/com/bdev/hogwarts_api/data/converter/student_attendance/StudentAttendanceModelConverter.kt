@@ -9,7 +9,10 @@ object StudentAttendanceModelConverter {
         return StudentAttendance(
                 id = studentAttendanceModel.id,
                 studentId = studentAttendanceModel.studentId ?: throw RuntimeException(),
-                time = studentAttendanceModel.time ?: throw RuntimeException(),
+                groupType = studentAttendanceModel.groupType ?: throw RuntimeException(),
+                studentsInGroup = studentAttendanceModel.studentsInGroup ?: throw RuntimeException(),
+                startTime = studentAttendanceModel.startTime ?: throw RuntimeException(),
+                finishTime = studentAttendanceModel.finishTime ?: throw RuntimeException(),
                 type = studentAttendanceModel.type ?: throw RuntimeException()
         )
     }

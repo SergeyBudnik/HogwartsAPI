@@ -1,12 +1,9 @@
 package com.bdev.hogwarts_api.data.model.event_participant
 
 import com.bdev.hogwarts_api.data.dto.events.EventParticipantStatus
-import com.bdev.hogwarts_api.data.dto.student.StudentReferralSource
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_EVENT_PARTICIPANT")
 open class EventParticipantModel {
@@ -24,9 +21,6 @@ open class EventParticipantModel {
     var status: EventParticipantStatus? = null
     @Column(name = "PHONE")
     var phone: String? = null
-    @Column(name = "REFERRAL_SOURCE")
-    @Enumerated(EnumType.STRING)
-    var referralSource: StudentReferralSource? = null
     @Column(name = "ENLISTED")
     var enlisted: Boolean? = null
 }

@@ -13,7 +13,6 @@ object EventParticipantDtoConverter {
         eventParticipantModel.name = EncodingUtils.toBase64(eventParticipant.name)
         eventParticipantModel.status = eventParticipant.status
         eventParticipantModel.phone = eventParticipant.phone
-        eventParticipantModel.referralSource = eventParticipant.referralSource
         eventParticipantModel.enlisted = eventParticipant.enlisted
 
         return eventParticipantModel

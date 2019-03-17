@@ -8,9 +8,9 @@ object StudentStatusModelConverter {
         return StudentStatus(
                 id = studentStatusModel.id,
                 studentId = studentStatusModel.studentId ?: throw RuntimeException(),
-                status = studentStatusModel.status ?: throw RuntimeException(),
-                creationTime = studentStatusModel.creationTime ?: throw RuntimeException(),
-                actionTime = studentStatusModel.actionTime ?: throw RuntimeException()
+                status = studentStatusModel.status,
+                creationTime = studentStatusModel.creationTime,
+                actionTime = studentStatusModel.actionTime
         )
     }
 }

@@ -7,13 +7,12 @@ import com.bdev.hogwarts_api.utils.EncodingUtils
 object EventParticipantModelConverter {
     fun convert(eventParticipantModel: EventParticipantModel): EventParticipant {
         return EventParticipant(
-                eventParticipantModel.id,
-                eventParticipantModel.eventId ?: throw RuntimeException(),
-                EncodingUtils.fromBase64(eventParticipantModel.name ?: throw RuntimeException()),
-                eventParticipantModel.status ?: throw RuntimeException(),
-                eventParticipantModel.phone ?: throw RuntimeException(),
-                eventParticipantModel.referralSource ?: throw RuntimeException(),
-                eventParticipantModel.enlisted ?: throw RuntimeException()
+                id = eventParticipantModel.id,
+                eventId = eventParticipantModel.eventId ?: throw RuntimeException(),
+                name = EncodingUtils.fromBase64(eventParticipantModel.name ?: throw RuntimeException()),
+                status = eventParticipantModel.status ?: throw RuntimeException(),
+                phone = eventParticipantModel.phone ?: throw RuntimeException(),
+                enlisted = eventParticipantModel.enlisted ?: throw RuntimeException()
         )
     }
 }

@@ -3,11 +3,9 @@ package com.bdev.hogwarts_api.data.model.group
 import com.bdev.hogwarts_api.data.dto.EducationLevel
 import com.bdev.hogwarts_api.data.dto.Age
 import com.bdev.hogwarts_api.data.dto.group.GroupType
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_GROUP")
 open class GroupModel {

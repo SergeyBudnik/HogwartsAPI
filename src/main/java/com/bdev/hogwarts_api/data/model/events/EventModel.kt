@@ -2,11 +2,9 @@ package com.bdev.hogwarts_api.data.model.events
 
 import com.bdev.hogwarts_api.data.dto.common.LessonTime
 import com.bdev.hogwarts_api.data.dto.events.EventType
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_EVENT")
 open class EventModel {

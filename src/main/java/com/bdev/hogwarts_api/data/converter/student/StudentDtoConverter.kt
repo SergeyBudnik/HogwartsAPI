@@ -16,9 +16,9 @@ object StudentDtoConverter {
         studentModel.name = toBase64(student.name)
         studentModel.phones = student.phones.map { it -> convertPhone(studentModel, it) }.toMutableList()
         studentModel.emails = student.emails.map { it -> convertEmail(studentModel, it) }.toMutableList()
+        studentModel.vkLink = student.vkLink
         studentModel.educationLevel = student.educationLevel
         studentModel.age = student.age
-        studentModel.referralSource = student.referralSource
 
         return studentModel
     }

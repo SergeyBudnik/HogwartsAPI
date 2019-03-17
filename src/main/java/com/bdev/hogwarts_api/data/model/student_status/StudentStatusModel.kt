@@ -1,11 +1,9 @@
 package com.bdev.hogwarts_api.data.model.student_status
 
 import com.bdev.hogwarts_api.data.dto.student.StudentStatusType
-import lombok.Data
 
 import javax.persistence.*
 
-@Data
 @Entity
 @Table(name = "HG_STUDENT_STATUS")
 open class StudentStatusModel {
