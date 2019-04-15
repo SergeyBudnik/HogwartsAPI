@@ -27,7 +27,9 @@ object GroupModelConverter {
                 teacherId = groupLessonModel.teacherId ?: throw RuntimeException(),
                 day = groupLessonModel.day ?: throw RuntimeException(),
                 startTime = groupLessonModel.startTime ?: throw RuntimeException(),
-                finishTime = groupLessonModel.finishTime  ?: throw RuntimeException()
+                finishTime = groupLessonModel.finishTime  ?: throw RuntimeException(),
+                creationTime = groupLessonModel.creationTime ?: -1,
+                deactivationTime = groupLessonModel.deactivationTime
         )
     }
 }

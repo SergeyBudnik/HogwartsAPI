@@ -10,5 +10,7 @@ class GroupLesson @JsonCreator constructor(
         @JsonProperty("day") val day: DayOfWeek,
         @JsonProperty("startTime") val startTime: LessonTime,
         @JsonProperty("finishTime") val finishTime: LessonTime,
-        @JsonProperty("teacherId") val teacherId: Long
+        @JsonProperty("teacherId") val teacherId: Long,
+        @JsonProperty("creationTime") val creationTime: Long,
+        @JsonProperty("deactivationTime") val deactivationTime: Long?
 )

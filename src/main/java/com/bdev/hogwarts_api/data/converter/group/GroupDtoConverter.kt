@@ -5,6 +5,7 @@ import com.bdev.hogwarts_api.data.dto.group.GroupLesson
 import com.bdev.hogwarts_api.data.model.group.GroupLessonModel
 import com.bdev.hogwarts_api.data.model.group.GroupModel
 import com.bdev.hogwarts_api.utils.EncodingUtils.toBase64
+import java.util.*
 
 object GroupDtoConverter {
     fun convert(group: Group): GroupModel {
@@ -32,6 +33,8 @@ object GroupDtoConverter {
         groupLessonModel.day = lesson.day
         groupLessonModel.startTime = lesson.startTime
         groupLessonModel.finishTime = lesson.finishTime
+        groupLessonModel.creationTime = if (lesson.id == null) { Date().time } else { lesson.creationTime }
+        groupLessonModel.deactivationTime = lesson.deactivationTime
 
         return groupLessonModel
     }

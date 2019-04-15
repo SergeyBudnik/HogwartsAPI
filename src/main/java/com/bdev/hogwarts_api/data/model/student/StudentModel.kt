@@ -20,7 +20,7 @@ open class StudentModel {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
     var emails: MutableList<StudentEmailModel> = ArrayList()
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var groupIds: MutableList<StudentGroupReferenceModel> = ArrayList()
+    var studentGroups: MutableList<StudentGroupReferenceModel> = ArrayList()
     @Column(name = "VK_LINK")
     var vkLink: String? = null
     @Column(name = "EDUCATION_LEVEL")

@@ -15,4 +15,8 @@ open class StudentGroupReferenceModel {
     var student: StudentModel? = null
     @Column(name = "GROUP_ID", length = 256)
     var groupId: Long = 0L
+    @Column(name = "START_TIME")
+    var startTime: Long? = null
+    @Column(name = "FINISH_TIME")
+    var finishTime: Long? = null
 }

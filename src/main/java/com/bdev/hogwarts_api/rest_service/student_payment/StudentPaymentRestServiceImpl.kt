@@ -17,6 +17,7 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
     @Autowired
     private lateinit var studentPaymentService: StudentPaymentService
 
+    @Transactional(readOnly = true)
     override fun getPayments(userInfo: MunicipaliUserInfo): List<StudentPayment> {
         return studentPaymentService.getPayments()
     }
@@ -37,6 +38,21 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
         }
 
         return studentPaymentService.addPayment(payment)
+    }
+
+    @Transactional
+    override fun setPaymentProcessed(userInfo: MunicipaliUserInfo, paymentId: Long) {
+        val payment = studentPaymentService.getPayment(paymentId) ?:
+                throw HttpEntityNotFoundException("Payment with id '%d' does not exist", paymentId)
+
+        studentPaymentService.updatePayment(StudentPayment(
+                id = payment.id,
+                studentId = payment.studentId,
+                teacherId = payment.teacherId,
+                amount = payment.amount,
+                time = payment.time,
+                processed = payment.processed
+        ))
     }
 
     @Transactional

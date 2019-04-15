@@ -27,4 +27,8 @@ open class GroupLessonModel {
     @Column(name = "FINISH_TIME")
     @Enumerated(EnumType.STRING)
     var finishTime: LessonTime? = null
+    @Column(name = "CREATION_TIME")
+    var creationTime: Long? = null
+    @Column(name = "DEACTIVATION_TIME")
+    var deactivationTime: Long? = null
 }

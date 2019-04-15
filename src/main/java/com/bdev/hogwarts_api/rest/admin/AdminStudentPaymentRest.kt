@@ -46,8 +46,21 @@ class AdminStudentPaymentRest : CommonRest() {
                         id = null,
                         studentId = payment.studentId,
                         amount = payment.amount,
-                        time = payment.time
+                        time = payment.time,
+                        teacherId = payment.teacherId,
+                        processed = false
                 )
+        )
+    }
+
+    @PutMapping("/processed/{paymentId}")
+    fun setPaymentProcessed(
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
+            @PathVariable paymentId: Long
+    ) {
+        studentPaymentRestService.setPaymentProcessed(
+                getUserInfo(authToken),
+                paymentId
         )
     }
 

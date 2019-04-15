@@ -7,5 +7,6 @@ interface StudentPaymentRestService {
     fun getPayments(userInfo: MunicipaliUserInfo): List<StudentPayment>
     fun getPayments(userInfo: MunicipaliUserInfo, studentId: Long): List<StudentPayment>
     fun addPayment(userInfo: MunicipaliUserInfo, payment: StudentPayment): Long
+    fun setPaymentProcessed(userInfo: MunicipaliUserInfo, paymentId: Long)
     fun deletePayment(userInfo: MunicipaliUserInfo, paymentId: Long)
 }

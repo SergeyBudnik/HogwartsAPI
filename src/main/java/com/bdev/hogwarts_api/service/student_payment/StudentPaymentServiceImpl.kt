@@ -23,6 +23,14 @@ class StudentPaymentServiceImpl : StudentPaymentService {
                 .map { StudentPaymentModelConverter.convert(it) }
     }
 
+    override fun getPayment(paymentId: Long): StudentPayment? {
+        if (!exists(paymentId)) {
+            throw RuntimeException("Payment with id '$paymentId' does not exist")
+        }
+
+        return studentPaymentDao.getOne(paymentId)?.let { StudentPaymentModelConverter.convert(it) }
+    }
+
     override fun exists(paymentId: Long): Boolean {
         return studentPaymentDao.exists(paymentId)
     }
@@ -44,6 +52,18 @@ class StudentPaymentServiceImpl : StudentPaymentService {
 
         return studentPaymentDao
                 .save(StudentPaymentDtoConverter.convert(payment)).id ?: throw RuntimeException()
+    }
+
+    override fun updatePayment(payment: StudentPayment) {
+        if (payment.id == null) {
+            throw RuntimeException("Payment id can't be null")
+        }
+
+        if (!exists(payment.id)) {
+            throw RuntimeException("Payment with id '${payment.id}' does not exist")
+        }
+
+        studentPaymentDao.save(StudentPaymentDtoConverter.convert(payment))
     }
 
     override fun deletePayment(paymentId: Long) {

@@ -12,6 +12,7 @@ object StudentPaymentDtoConverter {
         studentPaymentModel.teacherId = studentPayment.teacherId
         studentPaymentModel.amount = studentPayment.amount
         studentPaymentModel.time = studentPayment.time
+        studentPaymentModel.processed = studentPayment.processed
 
         return studentPaymentModel
     }

@@ -1,6 +1,7 @@
 package com.bdev.hogwarts_api.data.converter.student
 
 import com.bdev.hogwarts_api.data.dto.student.Student
+import com.bdev.hogwarts_api.data.dto.student.StudentGroup
 import com.bdev.hogwarts_api.data.model.student.StudentEmailModel
 import com.bdev.hogwarts_api.data.model.student.StudentGroupReferenceModel
 import com.bdev.hogwarts_api.data.model.student.StudentModel
@@ -12,7 +13,7 @@ object StudentDtoConverter {
         val studentModel = StudentModel()
 
         studentModel.id = student.id
-        studentModel.groupIds = student.groupIds.map { it -> convertGroupIds(studentModel, it) }.toMutableList()
+        studentModel.studentGroups = student.studentGroups.map { it -> convertGroupIds(studentModel, it) }.toMutableList()
         studentModel.name = toBase64(student.name)
         studentModel.phones = student.phones.map { it -> convertPhone(studentModel, it) }.toMutableList()
         studentModel.emails = student.emails.map { it -> convertEmail(studentModel, it) }.toMutableList()
@@ -23,11 +24,13 @@ object StudentDtoConverter {
         return studentModel
     }
 
-    private fun convertGroupIds(studentModel: StudentModel, groupId: Long): StudentGroupReferenceModel {
+    private fun convertGroupIds(studentModel: StudentModel, studentGroup: StudentGroup): StudentGroupReferenceModel {
         val studentGroupReferenceModel = StudentGroupReferenceModel()
 
-        studentGroupReferenceModel.groupId = groupId
         studentGroupReferenceModel.student = studentModel
+        studentGroupReferenceModel.groupId = studentGroup.groupId
+        studentGroupReferenceModel.startTime = studentGroup.startTime
+        studentGroupReferenceModel.finishTime = studentGroup.finishTime
 
         return studentGroupReferenceModel
     }

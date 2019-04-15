@@ -8,5 +8,6 @@ class StudentPayment @JsonCreator constructor(
         @JsonProperty("studentId") val studentId: Long,
         @JsonProperty("teacherId") val teacherId: Long,
         @JsonProperty("amount") val amount: Long,
-        @JsonProperty("time") val time: Long
+        @JsonProperty("time") val time: Long,
+        @JsonProperty("processed") val processed: Boolean
 )

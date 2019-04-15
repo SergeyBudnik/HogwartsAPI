@@ -18,4 +18,6 @@ open class StudentPaymentModel {
     var amount: Long? = null
     @Column(name = "PAYMENT_TIME")
     var time: Long? = null
+    @Column(name = "PROCESSED")
+    var processed: Boolean? = null
 }
