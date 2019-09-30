@@ -41,7 +41,7 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
     }
 
     @Transactional
-    override fun setPaymentProcessed(userInfo: MunicipaliUserInfo, paymentId: Long) {
+    override fun setPaymentProcessed(userInfo: MunicipaliUserInfo, paymentId: Long, processed: Boolean) {
         val payment = studentPaymentService.getPayment(paymentId) ?:
                 throw HttpEntityNotFoundException("Payment with id '%d' does not exist", paymentId)
 
@@ -51,7 +51,7 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
                 teacherId = payment.teacherId,
                 amount = payment.amount,
                 time = payment.time,
-                processed = payment.processed
+                processed = processed
         ))
     }
 

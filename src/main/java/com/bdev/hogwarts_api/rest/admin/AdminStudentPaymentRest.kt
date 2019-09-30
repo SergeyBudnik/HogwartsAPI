@@ -53,14 +53,16 @@ class AdminStudentPaymentRest : CommonRest() {
         )
     }
 
-    @PutMapping("/processed/{paymentId}")
+    @PutMapping("/processed/{paymentId}/{processed}")
     fun setPaymentProcessed(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @PathVariable paymentId: Long
+            @PathVariable paymentId: Long,
+            @PathVariable processed: Boolean
     ) {
         studentPaymentRestService.setPaymentProcessed(
-                getUserInfo(authToken),
-                paymentId
+                userInfo = getUserInfo(authToken),
+                paymentId = paymentId,
+                processed = processed
         )
     }
 

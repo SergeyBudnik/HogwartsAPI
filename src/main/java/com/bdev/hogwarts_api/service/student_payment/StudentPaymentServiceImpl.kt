@@ -28,7 +28,7 @@ class StudentPaymentServiceImpl : StudentPaymentService {
             throw RuntimeException("Payment with id '$paymentId' does not exist")
         }
 
-        return studentPaymentDao.getOne(paymentId)?.let { StudentPaymentModelConverter.convert(it) }
+        return studentPaymentDao.findOne(paymentId)?.let { StudentPaymentModelConverter.convert(it) }
     }
 
     override fun exists(paymentId: Long): Boolean {
