@@ -7,6 +7,6 @@ import com.bdev.hogwarts_api.data.dto.student.StudentPayment
 interface StudentAttendanceRestService {
     fun getAllAttendances(userInfo: MunicipaliUserInfo): List<StudentAttendance>
     fun getAttendances(userInfo: MunicipaliUserInfo, studentId: Long): List<StudentAttendance>
-    fun addAttendance(userInfo: MunicipaliUserInfo, attendance: StudentAttendance): Long
-    fun deleteAttendance(userInfo: MunicipaliUserInfo, attendanceId: Long)
+    fun addAttendance(userInfo: MunicipaliUserInfo, attendance: StudentAttendance)
+    fun deleteAttendance(userInfo: MunicipaliUserInfo, studentId: Long, startTime: Long)
 }

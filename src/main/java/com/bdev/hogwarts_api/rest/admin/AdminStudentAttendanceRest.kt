@@ -20,7 +20,7 @@ class AdminStudentAttendanceRest : CommonRest() {
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String
     ): List<StudentAttendance> {
         return studentAttendanceRestService.getAllAttendances(
-                getUserInfo(authToken)
+                userInfo = getUserInfo(authToken)
         )
     }
 
@@ -30,30 +30,32 @@ class AdminStudentAttendanceRest : CommonRest() {
             @PathVariable studentId: Long
     ): List<StudentAttendance> {
         return studentAttendanceRestService.getAttendances(
-                getUserInfo(authToken),
-                studentId
+                userInfo = getUserInfo(authToken),
+                studentId = studentId
         )
     }
 
-    @PostMapping
+    @PostMapping("")
     fun addAttendance(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
             @RequestBody attendance: StudentAttendance
-    ): Long {
+    ) {
         return studentAttendanceRestService.addAttendance(
-                getUserInfo(authToken),
-                attendance
+                userInfo = getUserInfo(authToken),
+                attendance = attendance
         )
     }
 
-    @DeleteMapping("/{attendanceId}")
+    @DeleteMapping("/student/{studentId}/start-time/{startTime}")
     fun deleteAttendance(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @PathVariable attendanceId: Long
+            @PathVariable studentId: Long,
+            @PathVariable startTime: Long
     ) {
         studentAttendanceRestService.deleteAttendance(
-                getUserInfo(authToken),
-                attendanceId
+                userInfo = getUserInfo(authToken),
+                studentId = studentId,
+                startTime = startTime
         )
     }
 }
