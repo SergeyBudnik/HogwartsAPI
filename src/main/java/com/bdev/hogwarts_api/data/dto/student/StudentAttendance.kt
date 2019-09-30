@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class StudentAttendance @JsonCreator constructor(
-        @JsonProperty("id") val id: Long?,
         @JsonProperty("studentId") val studentId: Long,
         @JsonProperty("type") val type: StudentAttendanceType,
         @JsonProperty("groupType") val groupType: GroupType,

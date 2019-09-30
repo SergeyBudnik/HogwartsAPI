@@ -32,20 +32,19 @@ open class StudentAttendanceRestServiceImpl : StudentAttendanceRestService {
     }
 
     @Transactional
-    override fun addAttendance(userInfo: MunicipaliUserInfo, attendance: StudentAttendance): Long {
+    override fun addAttendance(userInfo: MunicipaliUserInfo, attendance: StudentAttendance) {
         if (studentService.getStudentById(attendance.studentId) == null) {
             throw HttpEntityNotFoundException("Student with id '%d' does not exist", attendance.studentId)
         }
 
-        return studentAttendanceService.addAttendance(attendance)
+        studentAttendanceService.addAttendance(attendance)
     }
 
     @Transactional
-    override fun deleteAttendance(userInfo: MunicipaliUserInfo, attendanceId: Long) {
-        if (!studentAttendanceService.exists(attendanceId)) {
-            throw HttpEntityNotFoundException("Student attendance with id '%d' does not exist", attendanceId)
-        }
-
-        studentAttendanceService.deleteAttendance(attendanceId)
+    override fun deleteAttendance(userInfo: MunicipaliUserInfo, studentId: Long, startTime: Long) {
+        studentAttendanceService.deleteAttendance(
+                studentId = studentId,
+                startTime = startTime
+        )
     }
 }

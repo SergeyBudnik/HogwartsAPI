@@ -2,29 +2,43 @@ package com.bdev.hogwarts_api.data.model.student_attendance
 
 import com.bdev.hogwarts_api.data.dto.group.GroupType
 import com.bdev.hogwarts_api.data.dto.student.StudentAttendanceType
-
+import java.io.Serializable
 import javax.persistence.*
 
-@Entity
-@Table(name = "HG_STUDENT_ATTENDANCE")
-open class StudentAttendanceModel {
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
-
+@Embeddable
+data class StudentAttendanceModelId(
     @Column(name = "STUDENT_ID")
-    var studentId: Long? = null
+    val studentId: Long,
+    @Column(name = "ATTENDANCE_START_TIME")
+    val startTime: Long
+) : Serializable {
+    @Suppress("unused")
+    constructor(): this(studentId = 0L, startTime = 0L)
+}
+
+@Entity
+@Table(name = "HG_STUDENT_ATTENDANCE_2")
+data class StudentAttendanceModel(
+    @EmbeddedId
+    val id: StudentAttendanceModelId,
+
     @Column(name = "ATTENDANCE_TYPE")
     @Enumerated(EnumType.STRING)
-    var type: StudentAttendanceType? = null
+    val type: StudentAttendanceType,
     @Column(name = "GROUP_TYPE")
     @Enumerated(EnumType.STRING)
-    var groupType: GroupType? = null
+    val groupType: GroupType,
     @Column(name = "STUDENTS_IN_GROUP")
-    var studentsInGroup: Int? = null
-    @Column(name = "ATTENDANCE_START_TIME")
-    var startTime: Long? = null
+    val studentsInGroup: Int,
     @Column(name = "ATTENDANCE_FINISH_TIME")
-    var finishTime: Long? = null
+    val finishTime: Long
+) {
+    @Suppress("unused")
+    constructor(): this(
+            id = StudentAttendanceModelId(),
+            type = StudentAttendanceType.VISITED,
+            groupType = GroupType.GROUP,
+            studentsInGroup = 0,
+            finishTime = 0L
+    )
 }
