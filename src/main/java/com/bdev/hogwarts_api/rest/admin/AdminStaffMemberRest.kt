@@ -1,7 +1,6 @@
 package com.bdev.hogwarts_api.rest.admin
 
-import com.bdev.hogwarts_api.data.dto.staff.ExistingStaffMemberInfo
-import com.bdev.hogwarts_api.data.dto.staff.NewStaffMemberInfo
+import com.bdev.hogwarts_api.data.dto.staff.StaffMember
 import com.bdev.hogwarts_api.rest.CommonRest
 import com.bdev.hogwarts_api.rest_service.admin.staff.StaffMemberRestService
 import io.swagger.annotations.Api
@@ -19,7 +18,7 @@ class AdminStaffMemberRest @Autowired constructor(
     @GetMapping("")
     fun getAllStaffMembers(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String
-    ): ResponseEntity<List<ExistingStaffMemberInfo>> {
+    ): ResponseEntity<List<StaffMember>> {
         return staffMemberRestService.getAllStaffMembers(
                 userInfo = getUserInfo(authToken)
         )
@@ -29,7 +28,7 @@ class AdminStaffMemberRest @Autowired constructor(
     fun getStaffMember(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
             @PathVariable("login") login: String
-    ): ResponseEntity<ExistingStaffMemberInfo> {
+    ): ResponseEntity<StaffMember> {
         return staffMemberRestService.getStaffMember(
                 userInfo = getUserInfo(authToken),
                 login = login
@@ -39,7 +38,7 @@ class AdminStaffMemberRest @Autowired constructor(
     @PostMapping("")
     fun createStaffMember(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @RequestBody staffMember: NewStaffMemberInfo
+            @RequestBody staffMember: StaffMember
     ): ResponseEntity<Nothing?> {
         return staffMemberRestService.createStaffMember(
                 userInfo = getUserInfo(authToken),
@@ -50,7 +49,7 @@ class AdminStaffMemberRest @Autowired constructor(
     @PutMapping("")
     fun editStaffMember(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @RequestBody staffMember: ExistingStaffMemberInfo
+            @RequestBody staffMember: StaffMember
     ) {
         staffMemberRestService.updateStaffMember(
                 userInfo = getUserInfo(authToken),

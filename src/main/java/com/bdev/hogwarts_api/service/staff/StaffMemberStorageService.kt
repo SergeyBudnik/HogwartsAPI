@@ -5,17 +5,16 @@ import com.bdev.hogwarts_api.data.converter.staff.StaffMemberDtoConverter
 import com.bdev.hogwarts_api.data.converter.staff.StaffMemberModelConverter
 import com.bdev.hogwarts_api.data.dto.person.ExistingPersonInfo
 import com.bdev.hogwarts_api.data.dto.person.NewPersonInfo
-import com.bdev.hogwarts_api.data.dto.staff.ExistingStaffMemberInfo
-import com.bdev.hogwarts_api.data.dto.staff.NewStaffMemberInfo
+import com.bdev.hogwarts_api.data.dto.staff.StaffMember
 import com.bdev.hogwarts_api.service.person.PersonStorageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 interface StaffMemberStorageService {
-    fun getAllStaffMembers(): List<ExistingStaffMemberInfo>
-    fun getStaffMember(login: String): ExistingStaffMemberInfo?
-    fun createStaffMember(staffMember: NewStaffMemberInfo)
-    fun updateStaffMember(staffMember: ExistingStaffMemberInfo)
+    fun getAllStaffMembers(): List<StaffMember>
+    fun getStaffMember(login: String): StaffMember?
+    fun createStaffMember(staffMember: StaffMember)
+    fun updateStaffMember(staffMember: StaffMember)
     fun deleteStaffMember(login: String)
 }
 
@@ -24,7 +23,7 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
         private val personStorageService: PersonStorageService,
         private val staffMemberDao: StaffMemberDao
 ) : StaffMemberStorageService {
-    override fun getAllStaffMembers(): List<ExistingStaffMemberInfo> {
+    override fun getAllStaffMembers(): List<StaffMember> {
         val personsMap = personStorageService.getAllPersons().map { it.id to it }.toMap()
 
         return staffMemberDao.findAll().mapNotNull {
@@ -41,7 +40,7 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
         }
     }
 
-    override fun getStaffMember(login: String): ExistingStaffMemberInfo? {
+    override fun getStaffMember(login: String): StaffMember? {
         val staffMemberModel = staffMemberDao.findOne(login)
 
         return if (staffMemberModel == null) {
@@ -60,21 +59,21 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
         }
     }
 
-    override fun createStaffMember(staffMember: NewStaffMemberInfo) {
+    override fun createStaffMember(staffMember: StaffMember) {
         val personId = personStorageService.createPerson(
                 NewPersonInfo(staffMember.person)
         )
 
         staffMemberDao.save(
                 StaffMemberDtoConverter.convert(
-                        staffMember = staffMember.staffMember,
+                        staffMember = staffMember,
                         personId = personId
                 )
         )
     }
 
-    override fun updateStaffMember(staffMember: ExistingStaffMemberInfo) {
-        val staffMemberModel = staffMemberDao.findOne(staffMember.staffMember.login)
+    override fun updateStaffMember(staffMember: StaffMember) {
+        val staffMemberModel = staffMemberDao.findOne(staffMember.login)
 
         if (staffMemberModel != null) {
             personStorageService.updatePerson(
@@ -86,7 +85,7 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
 
             staffMemberDao.save(
                     StaffMemberDtoConverter.convert(
-                            staffMember = staffMember.staffMember,
+                            staffMember = staffMember,
                             personId = staffMemberModel.personId
                     )
             )
