@@ -14,6 +14,7 @@ object GroupModelConverter {
                 type = groupModel.type ?: throw RuntimeException(),
                 cabinetId = groupModel.cabinetId ?: throw RuntimeException(),
                 managerId = groupModel.managerId ?: throw RuntimeException(),
+                headTeacherLogin = groupModel.headTeacherLogin ?: "",
                 lessons = (groupModel.lessons ?: throw RuntimeException()).map { convertLesson(it) },
                 age = groupModel.age ?: throw RuntimeException(),
                 educationLevel = groupModel.educationLevel ?: throw RuntimeException(),
@@ -25,6 +26,7 @@ object GroupModelConverter {
         return GroupLesson(
                 id = groupLessonModel.id,
                 teacherId = groupLessonModel.teacherId ?: throw RuntimeException(),
+                teacherLogin = groupLessonModel.teacherLogin ?: "",
                 day = groupLessonModel.day ?: throw RuntimeException(),
                 startTime = groupLessonModel.startTime ?: throw RuntimeException(),
                 finishTime = groupLessonModel.finishTime  ?: throw RuntimeException(),

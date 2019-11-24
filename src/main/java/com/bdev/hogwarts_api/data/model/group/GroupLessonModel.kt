@@ -18,6 +18,8 @@ open class GroupLessonModel {
     var group: GroupModel? = null
     @Column(name = "TEACHER_ID")
     var teacherId: Long? = null
+    @Column(name = "TEACHER_LOGIN")
+    var teacherLogin: String? = null
     @Column(name = "DAY")
     @Enumerated(EnumType.STRING)
     var day: DayOfWeek? = null
