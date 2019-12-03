@@ -16,8 +16,6 @@ open class GroupModel {
 
     @Column(name = "CABINET_ID")
     var cabinetId: Long? = null
-    @Column(name = "MANAGER_ID")
-    var managerId: Long? = null
     @Column(name = "HEAD_TEACHER_LOGIN")
     var headTeacherLogin: String? = null
     @Column(name = "BOOK_NAME")
