@@ -13,7 +13,6 @@ object GroupModelConverter {
                 bookName = fromBase64(groupModel.bookName ?: ""),
                 type = groupModel.type ?: throw RuntimeException(),
                 cabinetId = groupModel.cabinetId ?: throw RuntimeException(),
-                managerId = groupModel.managerId ?: throw RuntimeException(),
                 headTeacherLogin = groupModel.headTeacherLogin ?: "",
                 lessons = (groupModel.lessons ?: throw RuntimeException()).map { convertLesson(it) },
                 age = groupModel.age ?: throw RuntimeException(),
@@ -25,7 +24,6 @@ object GroupModelConverter {
     private fun convertLesson(groupLessonModel: GroupLessonModel): GroupLesson {
         return GroupLesson(
                 id = groupLessonModel.id,
-                teacherId = groupLessonModel.teacherId ?: throw RuntimeException(),
                 teacherLogin = groupLessonModel.teacherLogin ?: "",
                 day = groupLessonModel.day ?: throw RuntimeException(),
                 startTime = groupLessonModel.startTime ?: throw RuntimeException(),
