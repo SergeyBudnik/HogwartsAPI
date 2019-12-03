@@ -9,7 +9,7 @@ object StudentPaymentDtoConverter {
 
         studentPaymentModel.id = studentPayment.id
         studentPaymentModel.studentId = studentPayment.studentId
-        studentPaymentModel.teacherId = studentPayment.teacherId
+        studentPaymentModel.staffMemberLogin = studentPayment.staffMemberLogin
         studentPaymentModel.amount = studentPayment.amount
         studentPaymentModel.time = studentPayment.time
         studentPaymentModel.processed = studentPayment.processed
