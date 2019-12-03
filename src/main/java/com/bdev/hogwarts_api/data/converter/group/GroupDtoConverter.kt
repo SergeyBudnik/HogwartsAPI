@@ -13,7 +13,7 @@ object GroupDtoConverter {
 
         groupModel.id = group.id
         groupModel.cabinetId = group.cabinetId
-        groupModel.managerId = group.managerId
+        groupModel.headTeacherLogin = group.headTeacherLogin
         groupModel.bookName = toBase64(group.bookName)
         groupModel.type = group.type
         groupModel.lessons = group.lessons.map { it -> convertLesson(groupModel, it) }.toMutableList()
@@ -29,7 +29,7 @@ object GroupDtoConverter {
 
         groupLessonModel.id = lesson.id
         groupLessonModel.group = groupModel
-        groupLessonModel.teacherId = lesson.teacherId
+        groupLessonModel.teacherLogin = lesson.teacherLogin
         groupLessonModel.day = lesson.day
         groupLessonModel.startTime = lesson.startTime
         groupLessonModel.finishTime = lesson.finishTime

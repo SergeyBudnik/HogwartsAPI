@@ -16,8 +16,8 @@ open class GroupLessonModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID", nullable = false)
     var group: GroupModel? = null
-    @Column(name = "TEACHER_ID")
-    var teacherId: Long? = null
+    @Column(name = "TEACHER_LOGIN")
+    var teacherLogin: String? = null
     @Column(name = "DAY")
     @Enumerated(EnumType.STRING)
     var day: DayOfWeek? = null

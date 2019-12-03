@@ -47,7 +47,7 @@ class AdminStudentPaymentRest : CommonRest() {
                         studentId = payment.studentId,
                         amount = payment.amount,
                         time = payment.time,
-                        teacherId = payment.teacherId,
+                        staffMemberLogin = payment.staffMemberLogin,
                         processed = false
                 )
         )

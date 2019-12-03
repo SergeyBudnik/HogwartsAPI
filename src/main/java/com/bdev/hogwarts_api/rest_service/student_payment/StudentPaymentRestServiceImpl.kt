@@ -48,7 +48,7 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
         studentPaymentService.updatePayment(StudentPayment(
                 id = payment.id,
                 studentId = payment.studentId,
-                teacherId = payment.teacherId,
+                staffMemberLogin = payment.staffMemberLogin,
                 amount = payment.amount,
                 time = payment.time,
                 processed = processed

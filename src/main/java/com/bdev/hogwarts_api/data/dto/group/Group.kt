@@ -9,7 +9,7 @@ class Group(
         @JsonProperty("bookName") val bookName: String,
         @JsonProperty("type") val type: GroupType,
         @JsonProperty("cabinetId") val cabinetId: Long,
-        @JsonProperty("managerId") val managerId: Long,
+        @JsonProperty("headTeacherLogin") val headTeacherLogin: String,
         @JsonProperty("lessons") val lessons: List<GroupLesson>,
         @JsonProperty("age") val age: Age,
         @JsonProperty("educationLevel") val educationLevel: EducationLevel,
