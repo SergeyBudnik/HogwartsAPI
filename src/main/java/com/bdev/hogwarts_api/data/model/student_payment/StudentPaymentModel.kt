@@ -12,8 +12,8 @@ open class StudentPaymentModel {
 
     @Column(name = "STUDENT_ID")
     var studentId: Long? = null
-    @Column(name = "TEACHER_ID")
-    var teacherId: Long? = null
+    @Column(name = "STAFF_MEMBER_LOGIN")
+    var staffMemberLogin: String? = null
     @Column(name = "PAYMENT_AMOUNT")
     var amount: Long? = null
     @Column(name = "PAYMENT_TIME")

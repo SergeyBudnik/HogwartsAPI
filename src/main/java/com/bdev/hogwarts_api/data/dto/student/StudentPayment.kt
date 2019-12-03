@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 class StudentPayment @JsonCreator constructor(
         @JsonProperty("id") val id: Long?,
         @JsonProperty("studentId") val studentId: Long,
-        @JsonProperty("teacherId") val teacherId: Long,
+        @JsonProperty("staffMemberLogin") val staffMemberLogin: String,
         @JsonProperty("amount") val amount: Long,
         @JsonProperty("time") val time: Long,
         @JsonProperty("processed") val processed: Boolean
