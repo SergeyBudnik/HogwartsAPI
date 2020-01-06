@@ -5,7 +5,7 @@ import com.bdev.hogwarts_api.data.dto.EducationLevel
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class Student @JsonCreator constructor(
+class StudentLegacy @JsonCreator constructor(
         @JsonProperty("id") val id: Long?,
         @JsonProperty("studentGroups") val studentGroups: List<StudentGroup>,
         @JsonProperty("name") val name: String,

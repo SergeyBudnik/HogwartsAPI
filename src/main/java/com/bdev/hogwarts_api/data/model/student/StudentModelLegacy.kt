@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "HG_STUDENT")
-open class StudentModel {
+open class StudentModelLegacy {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +16,11 @@ open class StudentModel {
     @Column(name = "NAME")
     var name: String? = null
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var phones: MutableList<StudentPhoneModel> = ArrayList()
+    var phones: MutableList<StudentPhoneModelLegacy> = ArrayList()
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var emails: MutableList<StudentEmailModel> = ArrayList()
+    var emails: MutableList<StudentEmailModelLegacy> = ArrayList()
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var studentGroups: MutableList<StudentGroupReferenceModel> = ArrayList()
+    var studentGroups: MutableList<StudentGroupReferenceModelLegacy> = ArrayList()
     @Column(name = "VK_LINK")
     var vkLink: String? = null
     @Column(name = "EDUCATION_LEVEL")

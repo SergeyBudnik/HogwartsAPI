@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "HG_STUDENT_PHONE")
-open class StudentPhoneModel {
+open class StudentPhoneModelLegacy {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,7 +12,7 @@ open class StudentPhoneModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID", nullable = false)
-    var student: StudentModel? = null
+    var student: StudentModelLegacy? = null
 
     @Column(name = "VALUE", length = 256)
     var value: String = ""
