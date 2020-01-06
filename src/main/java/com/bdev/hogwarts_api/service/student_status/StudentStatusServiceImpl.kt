@@ -1,22 +1,19 @@
 package com.bdev.hogwarts_api.service.student_status
 
-import com.bdev.hogwarts_api.dao.StudentDao
+import com.bdev.hogwarts_api.dao.StudentDaoLegacy
 import com.bdev.hogwarts_api.dao.StudentStatusDao
 import com.bdev.hogwarts_api.data.converter.student_status.StudentStatusDtoConverter
 import com.bdev.hogwarts_api.data.converter.student_status.StudentStatusModelConverter
 import com.bdev.hogwarts_api.data.dto.student.StudentStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 import java.lang.String.format
-import java.util.Comparator.comparing
-import java.util.stream.Collectors.toList
 
 @Service
 class StudentStatusServiceImpl : StudentStatusService {
     @Autowired
-    private lateinit var studentDao: StudentDao
+    private lateinit var studentDao: StudentDaoLegacy
     @Autowired
     private lateinit var studentStatusDao: StudentStatusDao
 

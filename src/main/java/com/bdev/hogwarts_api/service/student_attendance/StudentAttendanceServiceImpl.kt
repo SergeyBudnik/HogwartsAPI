@@ -5,7 +5,7 @@ import com.bdev.hogwarts_api.data.converter.student_attendance.StudentAttendance
 import com.bdev.hogwarts_api.data.converter.student_attendance.StudentAttendanceModelConverter
 import com.bdev.hogwarts_api.data.dto.student.StudentAttendance
 import com.bdev.hogwarts_api.data.model.student_attendance.StudentAttendanceModelId
-import com.bdev.hogwarts_api.service.student.StudentService
+import com.bdev.hogwarts_api.service.student_legacy.StudentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.String.format

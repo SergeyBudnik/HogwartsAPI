@@ -1,70 +1,46 @@
 package com.bdev.hogwarts_api.rest.admin
 
-import com.bdev.hogwarts_api.data.dto.student.Student
-import com.bdev.hogwarts_api.rest.CommonRest
-import com.bdev.hogwarts_api.rest_service.student.StudentRestService
+import com.bdev.hogwarts_api.data.dto.student.studying.Student
+import com.bdev.hogwarts_api.rest_service.admin.student.AdminStudentRestService
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/admin/students")
 @Api(tags = ["Student"], description = "PROTECTED")
-class AdminStudentRest : CommonRest() {
-    @Autowired
-    private lateinit var studentRestService: StudentRestService
+class AdminStudentRest @Autowired constructor(
+        studentRestService: AdminStudentRestService
+) : AdminCommonCRUDRest<String, Student>(studentRestService) {
 
     @GetMapping("")
-    fun getAllStudents(
+    override fun getAll(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String
-    ): List<Student> {
-        return studentRestService.getAllStudents(
-                getUserInfo(authToken)
-        )
-    }
+    ): ResponseEntity<Any> = super.getAll(authToken)
 
-    @GetMapping("/{studentId}")
-    fun getStudentById(
+    @GetMapping("/{id}")
+    override fun getById(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @PathVariable studentId: Long
-    ): Student {
-        return studentRestService.getStudentById(
-                getUserInfo(authToken),
-                studentId
-        )
-    }
+            @PathVariable id: String
+    ): ResponseEntity<Any> = super.getById(authToken, id)
 
     @PostMapping("")
-    fun createStudent(
+    override fun create(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @RequestBody student: Student
-    ): Long {
-        return studentRestService.createStudent(
-                getUserInfo(authToken),
-                student
-        )
-    }
+            @RequestBody o: Student
+    ): ResponseEntity<Any> = super.create(authToken, o)
 
     @PutMapping("")
-    fun editStudent(
+    override fun update(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @RequestBody student: Student
-    ) {
-        studentRestService.editStudent(
-                getUserInfo(authToken),
-                student
-        )
-    }
+            @RequestBody o: Student
+    ): ResponseEntity<Any> = super.update(authToken, o)
 
-    @DeleteMapping("/{studentId}")
-    fun deleteStudent(
+    @DeleteMapping("/{id}")
+    override fun delete(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @PathVariable studentId: Long
-    ) {
-        studentRestService.deleteStudent(
-                getUserInfo(authToken),
-                studentId
-        )
-    }
+            @PathVariable id: String
+    ): ResponseEntity<Any> = super.delete(authToken, id)
 }

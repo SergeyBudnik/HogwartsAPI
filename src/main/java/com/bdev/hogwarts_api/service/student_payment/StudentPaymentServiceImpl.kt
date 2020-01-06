@@ -4,7 +4,7 @@ import com.bdev.hogwarts_api.dao.StudentPaymentDao
 import com.bdev.hogwarts_api.data.converter.student_payment.StudentPaymentDtoConverter
 import com.bdev.hogwarts_api.data.converter.student_payment.StudentPaymentModelConverter
 import com.bdev.hogwarts_api.data.dto.student.StudentPayment
-import com.bdev.hogwarts_api.service.student.StudentService
+import com.bdev.hogwarts_api.service.student_legacy.StudentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.String.format
