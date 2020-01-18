@@ -33,7 +33,7 @@ object GroupDtoConverter {
         groupLessonModel.day = lesson.day
         groupLessonModel.startTime = lesson.startTime
         groupLessonModel.finishTime = lesson.finishTime
-        groupLessonModel.creationTime = if (lesson.id == null) { Date().time } else { lesson.creationTime }
+        groupLessonModel.creationTime = lesson.creationTime
         groupLessonModel.deactivationTime = lesson.deactivationTime
 
         return groupLessonModel
