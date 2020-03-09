@@ -10,7 +10,6 @@ object GroupModelConverter {
     fun convert(groupModel: GroupModel): Group {
         return Group(
                 id = groupModel.id,
-                bookName = fromBase64(groupModel.bookName ?: ""),
                 type = groupModel.type ?: throw RuntimeException(),
                 cabinetId = groupModel.cabinetId ?: throw RuntimeException(),
                 headTeacherLogin = groupModel.headTeacherLogin ?: "",
