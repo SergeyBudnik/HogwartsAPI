@@ -18,8 +18,6 @@ open class GroupModel {
     var cabinetId: Long? = null
     @Column(name = "HEAD_TEACHER_LOGIN")
     var headTeacherLogin: String? = null
-    @Column(name = "BOOK_NAME")
-    var bookName: String? = null
     @Column(name = "GROUP_TYPE")
     @Enumerated(EnumType.STRING)
     var type: GroupType? = null

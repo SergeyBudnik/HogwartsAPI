@@ -14,7 +14,6 @@ object GroupDtoConverter {
         groupModel.id = group.id
         groupModel.cabinetId = group.cabinetId
         groupModel.headTeacherLogin = group.headTeacherLogin
-        groupModel.bookName = toBase64(group.bookName)
         groupModel.type = group.type
         groupModel.lessons = group.lessons.map { it -> convertLesson(groupModel, it) }.toMutableList()
         groupModel.age = group.age
