@@ -1,6 +1,5 @@
 package com.bdev.hogwarts_api.data.model.cabinet
 
-import com.bdev.hogwarts_api.data.dto.cabinet.CabinetType
 import javax.persistence.*
 
 @Entity
@@ -13,8 +12,4 @@ open class CabinetModel {
 
     @Column(name = "NAME")
     var name: String? = null
-
-    @Column(name = "CABINET_TYPE")
-    @Enumerated(EnumType.STRING)
-    var cabinetType: CabinetType? = null
 }
