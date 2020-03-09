@@ -8,8 +8,7 @@ object CabinetModelConverter {
     fun convert(cabinetModel: CabinetModel): Cabinet {
         return Cabinet(
                 cabinetModel.id,
-                fromBase64(cabinetModel.name ?: throw RuntimeException()),
-                cabinetModel.cabinetType ?: throw RuntimeException()
+                fromBase64(cabinetModel.name ?: throw RuntimeException())
         )
     }
 }

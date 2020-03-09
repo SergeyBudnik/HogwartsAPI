@@ -12,7 +12,6 @@ object CabinetDtoConverter {
 
         cabinetModel.id = cabinet.id
         cabinetModel.name = toBase64(cabinet.name)
-        cabinetModel.cabinetType = cabinet.cabinetType
 
         return cabinetModel
     }
