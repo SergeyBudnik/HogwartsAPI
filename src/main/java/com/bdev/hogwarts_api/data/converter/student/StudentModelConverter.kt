@@ -16,8 +16,8 @@ object StudentModelConverter {
                 login = studentModel.login,
                 person = person,
                 educationInfo = EducationInfo(
-                        level = EducationLevel.fromId(studentModel.educationAge) ?: EducationLevel.UNKNOWN,
-                        age = Age.fromId(studentModel.educationLevel) ?: Age.UNKNOWN
+                        level = EducationLevel.fromId(studentModel.educationLevel) ?: EducationLevel.UNKNOWN,
+                        age = Age.fromId(studentModel.educationAge  ) ?: Age.UNKNOWN
                 ),
                 studentGroups = studentModel.studentGroups.map { convertGroups(it) },
                 statusType = StudentStatusType.fromId(studentModel.statusType) ?: StudentStatusType.STUDYING

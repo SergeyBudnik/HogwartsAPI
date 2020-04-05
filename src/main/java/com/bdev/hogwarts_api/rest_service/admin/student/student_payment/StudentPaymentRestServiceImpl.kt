@@ -1,9 +1,10 @@
-package com.bdev.hogwarts_api.rest_service.student_payment
+package com.bdev.hogwarts_api.rest_service.admin.student.student_payment
 
 import acropollis.municipali.security.common.dto.MunicipaliUserInfo
-import com.bdev.hogwarts_api.data.dto.student.StudentPayment
+import com.bdev.hogwarts_api.data.dto.student.ExistingStudentPayment
+import com.bdev.hogwarts_api.data.dto.student.NewStudentPayment
 import com.bdev.hogwarts_api.exceptions.http.HttpEntityNotFoundException
-import com.bdev.hogwarts_api.service.student_legacy.StudentService
+import com.bdev.hogwarts_api.service.student.StudentStorageService
 import com.bdev.hogwarts_api.service.student_payment.StudentPaymentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -12,29 +13,29 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
     @Autowired
-    private lateinit var studentService: StudentService
+    private lateinit var studentStorageService: StudentStorageService
 
     @Autowired
     private lateinit var studentPaymentService: StudentPaymentService
 
     @Transactional(readOnly = true)
-    override fun getPayments(userInfo: MunicipaliUserInfo): List<StudentPayment> {
+    override fun getPayments(userInfo: MunicipaliUserInfo): List<ExistingStudentPayment> {
         return studentPaymentService.getPayments()
     }
 
     @Transactional(readOnly = true)
-    override fun getPayments(userInfo: MunicipaliUserInfo, studentId: Long): List<StudentPayment> {
-        if (!studentService.exists(studentId)) {
-            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentId)
+    override fun getStudentPayments(userInfo: MunicipaliUserInfo, studentLogin: String): List<ExistingStudentPayment> {
+        if (studentStorageService.getById(studentLogin) == null) {
+            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentLogin)
         }
 
-        return studentPaymentService.getPayments(studentId)
+        return studentPaymentService.getPayments(studentLogin)
     }
 
     @Transactional
-    override fun addPayment(userInfo: MunicipaliUserInfo, payment: StudentPayment): Long {
-        if (!studentService.exists(payment.studentId)) {
-            throw HttpEntityNotFoundException("Student with id '%d' does not exist", payment.studentId)
+    override fun addPayment(userInfo: MunicipaliUserInfo, payment: NewStudentPayment): Long {
+        if (studentStorageService.getById(payment.info.studentLogin) == null) {
+            throw HttpEntityNotFoundException("Student with id '%d' does not exist", payment.info.studentLogin)
         }
 
         return studentPaymentService.addPayment(payment)
@@ -45,14 +46,9 @@ open class StudentPaymentRestServiceImpl : StudentPaymentRestService {
         val payment = studentPaymentService.getPayment(paymentId) ?:
                 throw HttpEntityNotFoundException("Payment with id '%d' does not exist", paymentId)
 
-        studentPaymentService.updatePayment(StudentPayment(
-                id = payment.id,
-                studentId = payment.studentId,
-                staffMemberLogin = payment.staffMemberLogin,
-                amount = payment.amount,
-                time = payment.time,
-                processed = processed
-        ))
+        studentPaymentService.updatePayment(
+                payment.copy(processed = processed)
+        )
     }
 
     @Transactional
