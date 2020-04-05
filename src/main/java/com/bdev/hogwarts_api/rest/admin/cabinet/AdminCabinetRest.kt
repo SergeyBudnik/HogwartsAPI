@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin/cabinets/management")
-@Api(tags = ["Admin cabinets management"], description = "PROTECTED")
+@Api(description = "Admin cabinets management")
 class AdminCabinetRest @Autowired constructor(
     private val adminCabinetRestService: AdminCabinetRestService
 ): CommonRest() {

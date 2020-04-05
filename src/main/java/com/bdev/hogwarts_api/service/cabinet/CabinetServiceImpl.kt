@@ -28,7 +28,9 @@ open class CabinetServiceImpl @Autowired constructor(
     }
 
     override fun saveCabinet(cabinet: NewCabinet): Long {
-        return cabinetDao.save(CabinetDtoConverter.convert(cabinet)).id!!
+        val cabinetModel = CabinetDtoConverter.convertNew(cabinet)
+
+        return cabinetDao.save(cabinetModel).id!!
     }
 
     override fun editCabinet(cabinet: ExistingCabinet) {
@@ -36,7 +38,9 @@ open class CabinetServiceImpl @Autowired constructor(
             throw RuntimeException("Cabinet with id '${cabinet.id}' does not exist")
         }
 
-        cabinetDao.save(CabinetDtoConverter.convert(cabinet))
+        val cabinetModel = CabinetDtoConverter.convertExisting(cabinet)
+
+        cabinetDao.save(cabinetModel)
     }
 
     override fun deleteCabinet(id: Long) {
