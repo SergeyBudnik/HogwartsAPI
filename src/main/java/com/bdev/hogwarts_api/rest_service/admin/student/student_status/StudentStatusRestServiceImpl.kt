@@ -1,10 +1,10 @@
-package com.bdev.hogwarts_api.rest_service.student_status
+package com.bdev.hogwarts_api.rest_service.admin.student.student_status
 
 import acropollis.municipali.security.common.dto.MunicipaliUserInfo
 import com.bdev.hogwarts_api.data.dto.student.StudentStatus
 import com.bdev.hogwarts_api.data.dto.student.StudentStatusType
 import com.bdev.hogwarts_api.exceptions.http.HttpEntityNotFoundException
-import com.bdev.hogwarts_api.service.student_legacy.StudentService
+import com.bdev.hogwarts_api.service.student.StudentStorageService
 import com.bdev.hogwarts_api.service.student_status.StudentStatusService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -15,7 +15,7 @@ import java.util.Date
 @Service
 open class StudentStatusRestServiceImpl : StudentStatusRestService {
     @Autowired
-    private lateinit var studentService: StudentService
+    private lateinit var studentStorageService: StudentStorageService
     @Autowired
     private lateinit var studentStatusService: StudentStatusService
 
@@ -25,29 +25,29 @@ open class StudentStatusRestServiceImpl : StudentStatusRestService {
 
     @Transactional(readOnly = true)
     override fun getLatestStudentsStatuses(userInfo: MunicipaliUserInfo): List<StudentStatus> {
-        return studentService
-                .getAllStudents()
-                .map { it.id ?: throw RuntimeException() }
+        return studentStorageService
+                .getAll()
+                .map { it.login }
                 .mapNotNull { studentStatusService.getStudentStatus(it) }
     }
 
     @Transactional(readOnly = true)
-    override fun getStudentStatuses(userInfo: MunicipaliUserInfo, studentId: Long): List<StudentStatus> {
-        if (!studentService.exists(studentId)) {
-            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentId)
+    override fun getStudentStatuses(userInfo: MunicipaliUserInfo, studentLogin: String): List<StudentStatus> {
+        if (studentStorageService.getById(studentLogin) == null) {
+            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentLogin)
         }
 
-        return studentStatusService.getAllStudentStatuses(studentId)
+        return studentStatusService.getAllStudentStatuses(studentLogin)
     }
 
     @Transactional
-    override fun changeStudentStatus(userInfo: MunicipaliUserInfo, studentId: Long, status: StudentStatusType, actionTime: Long) {
-        if (!studentService.exists(studentId)) {
-            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentId)
+    override fun changeStudentStatus(userInfo: MunicipaliUserInfo, studentLogin: String, status: StudentStatusType, actionTime: Long) {
+        if (studentStorageService.getById(studentLogin) == null) {
+            throw HttpEntityNotFoundException("Student with id '%d' does not exist", studentLogin)
         }
 
         studentStatusService.changeStudentStatus(StudentStatus(
-                studentId = studentId,
+                studentLogin = studentLogin,
                 creationTime = Date().time,
                 actionTime = actionTime,
                 status = status

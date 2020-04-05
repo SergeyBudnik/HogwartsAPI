@@ -1,59 +1,52 @@
-package com.bdev.hogwarts_api.rest.admin
+package com.bdev.hogwarts_api.rest.admin.student
 
-import com.bdev.hogwarts_api.data.dto.student.StudentPayment
+import com.bdev.hogwarts_api.data.dto.student.ExistingStudentPayment
+import com.bdev.hogwarts_api.data.dto.student.NewStudentPayment
 import com.bdev.hogwarts_api.rest.CommonRest
-import com.bdev.hogwarts_api.rest_service.student_payment.StudentPaymentRestService
+import com.bdev.hogwarts_api.rest_service.admin.student.student_payment.StudentPaymentRestService
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/student-payment")
-@Api(tags = ["Student Payment"], description = "PROTECTED")
-class AdminStudentPaymentRest : CommonRest() {
-    @Autowired
-    private lateinit var studentPaymentRestService: StudentPaymentRestService
-
+@RequestMapping("/admin/students/payments")
+@Api(tags = ["Admin Students Payments"], description = "PROTECTED")
+class AdminStudentPaymentRest @Autowired constructor(
+        private val studentPaymentRestService: StudentPaymentRestService
+): CommonRest() {
     @GetMapping("")
     fun getPayments(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String
-    ): List<StudentPayment> {
+    ): List<ExistingStudentPayment> {
         return studentPaymentRestService.getPayments(
-                getUserInfo(authToken)
+                userInfo = getUserInfo(authToken)
         )
     }
 
-    @GetMapping("/{studentId}")
+    @GetMapping("/student/{studentLogin}")
     fun getPayments(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @PathVariable studentId: Long
-    ): List<StudentPayment> {
-        return studentPaymentRestService.getPayments(
-                getUserInfo(authToken),
-                studentId
+            @PathVariable studentLogin: String
+    ): List<ExistingStudentPayment> {
+        return studentPaymentRestService.getStudentPayments(
+                userInfo = getUserInfo(authToken),
+                studentLogin = studentLogin
         )
     }
 
     @PostMapping("")
     fun addPayment(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
-            @RequestBody payment: StudentPayment
+            @RequestBody payment: NewStudentPayment
     ): Long {
         return studentPaymentRestService.addPayment(
-                getUserInfo(authToken),
-                StudentPayment(
-                        id = null,
-                        studentId = payment.studentId,
-                        amount = payment.amount,
-                        time = payment.time,
-                        staffMemberLogin = payment.staffMemberLogin,
-                        processed = false
-                )
+                userInfo = getUserInfo(authToken),
+                payment = payment
         )
     }
 
-    @PutMapping("/processed/{paymentId}/{processed}")
+    @PutMapping("/{paymentId}/processed/{processed}")
     fun setPaymentProcessed(
             @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
             @PathVariable paymentId: Long,

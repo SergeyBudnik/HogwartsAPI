@@ -10,8 +10,8 @@ open class StudentPaymentModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
 
-    @Column(name = "STUDENT_ID")
-    var studentId: Long? = null
+    @Column(name = "STUDENT_LOGIN")
+    var studentLogin: String? = null
     @Column(name = "STAFF_MEMBER_LOGIN")
     var staffMemberLogin: String? = null
     @Column(name = "PAYMENT_AMOUNT")

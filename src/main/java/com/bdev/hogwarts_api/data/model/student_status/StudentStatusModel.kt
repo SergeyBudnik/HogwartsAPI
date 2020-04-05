@@ -12,8 +12,8 @@ open class StudentStatusModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
 
-    @Column(name = "STUDENT_ID")
-    var studentId: Long? = null
+    @Column(name = "STUDENT_LOGIN")
+    var studentLogin: String? = null
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
     var status: StudentStatusType = StudentStatusType.STUDYING

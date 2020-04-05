@@ -1,13 +1,14 @@
 package com.bdev.hogwarts_api.service.student_payment
 
-import com.bdev.hogwarts_api.data.dto.student.StudentPayment
+import com.bdev.hogwarts_api.data.dto.student.ExistingStudentPayment
+import com.bdev.hogwarts_api.data.dto.student.NewStudentPayment
 
 interface StudentPaymentService {
-    fun getPayments(): List<StudentPayment>
-    fun getPayment(paymentId: Long): StudentPayment?
+    fun getPayments(): List<ExistingStudentPayment>
+    fun getPayment(paymentId: Long): ExistingStudentPayment?
     fun exists(paymentId: Long): Boolean
-    fun getPayments(studentId: Long): List<StudentPayment>
-    fun addPayment(payment: StudentPayment): Long
-    fun updatePayment(payment: StudentPayment)
+    fun getPayments(studentLogin: String): List<ExistingStudentPayment>
+    fun addPayment(payment: NewStudentPayment): Long
+    fun updatePayment(payment: ExistingStudentPayment)
     fun deletePayment(paymentId: Long)
 }

@@ -5,5 +5,5 @@ import com.bdev.hogwarts_api.data.model.student_attendance.StudentAttendanceMode
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface StudentAttendanceDao : JpaRepository<StudentAttendanceModel, StudentAttendanceModelId> {
-    fun getAllByIdStudentId(studentId: Long): List<StudentAttendanceModel>
+    fun getAllByIdStudentLogin(studentLogin: String): List<StudentAttendanceModel>
 }
