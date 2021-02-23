@@ -1,5 +1,8 @@
 package com.bdev.hogwarts_api.data.dto.staff
 
-data class StaffMemberSubscriptions(
-        val freeLessonRequest: Boolean
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class StaffMemberSubscriptions @JsonCreator constructor(
+        @JsonProperty("freeLessonRequest") val freeLessonRequest: Boolean
 )
