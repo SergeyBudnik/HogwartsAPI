@@ -8,7 +8,8 @@ object StaffMemberModelConverter {
     fun convertExisting(staffMemberModel: StaffMemberModel, person: ExistingPersonInfo): StaffMember {
         return StaffMember(
                 person = person.person,
-                login = staffMemberModel.login
+                login = staffMemberModel.login,
+                salaryIn30m = staffMemberModel.salaryIn30m
         )
     }
 }

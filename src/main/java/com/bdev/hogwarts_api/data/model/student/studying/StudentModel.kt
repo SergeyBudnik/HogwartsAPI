@@ -15,6 +15,9 @@ open class StudentModel constructor(
         @Column(name = "PERSON_ID", nullable = false)
         var personId: Long,
 
+        @Column(name = "MANAGER_LOGIN", nullable = false)
+        var managerLogin: String,
+
         @Column(name = "EDUCATION_AGE", nullable = false)
         var educationAge: String,
         @Column(name = "EDUCATION_LEVEL", nullable = false)
@@ -29,6 +32,7 @@ open class StudentModel constructor(
     constructor(): this(
             login = "",
             personId = 0L,
+            managerLogin = "",
             educationAge = Age.UNKNOWN.id,
             educationLevel = EducationLevel.UNKNOWN.id,
             statusType = StudentStatusType.STUDYING.id,

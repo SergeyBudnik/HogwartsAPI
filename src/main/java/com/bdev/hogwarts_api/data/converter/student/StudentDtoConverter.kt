@@ -10,6 +10,7 @@ object StudentDtoConverter {
         val model =  StudentModel(
                 login = student.login,
                 personId = personId,
+                managerLogin = student.managerLogin,
                 educationAge = student.educationInfo.age.id,
                 educationLevel = student.educationInfo.level.id,
                 statusType = student.statusType.id,

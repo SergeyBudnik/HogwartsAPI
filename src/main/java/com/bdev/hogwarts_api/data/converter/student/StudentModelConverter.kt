@@ -15,6 +15,7 @@ object StudentModelConverter {
         return Student(
                 login = studentModel.login,
                 person = person,
+                managerLogin = studentModel.managerLogin,
                 educationInfo = EducationInfo(
                         level = EducationLevel.fromId(studentModel.educationLevel) ?: EducationLevel.UNKNOWN,
                         age = Age.fromId(studentModel.educationAge  ) ?: Age.UNKNOWN

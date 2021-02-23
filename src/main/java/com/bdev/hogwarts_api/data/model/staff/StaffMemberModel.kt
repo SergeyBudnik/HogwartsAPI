@@ -14,4 +14,7 @@ open class StaffMemberModel {
 
     @Column(name = "PERSON_ID", nullable = false)
     var personId: Long = 0L
+
+    @Column(name = "SALARY_IN_30_M", nullable = false)
+    var salaryIn30m: Int = 0
 }

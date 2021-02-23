@@ -18,6 +18,10 @@ open class GroupLessonModel {
     var group: GroupModel? = null
     @Column(name = "TEACHER_LOGIN")
     var teacherLogin: String? = null
+    @Column(name = "IS_ONLINE")
+    var isOnline: Boolean? = null
+    @Column(name = "IGNORE_SINGLE_STUDENT_PRICING")
+    var ignoreSingleStudentPricing: Boolean? = null
     @Column(name = "DAY")
     @Enumerated(EnumType.STRING)
     var day: DayOfWeek? = null

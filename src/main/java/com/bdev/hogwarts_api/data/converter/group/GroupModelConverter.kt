@@ -24,6 +24,8 @@ object GroupModelConverter {
         return GroupLesson(
                 id = groupLessonModel.id,
                 teacherLogin = groupLessonModel.teacherLogin ?: "",
+                isOnline = groupLessonModel.isOnline ?: false,
+                ignoreSingleStudentPricing = groupLessonModel.ignoreSingleStudentPricing ?: false,
                 day = groupLessonModel.day ?: throw RuntimeException(),
                 startTime = groupLessonModel.startTime ?: throw RuntimeException(),
                 finishTime = groupLessonModel.finishTime  ?: throw RuntimeException(),

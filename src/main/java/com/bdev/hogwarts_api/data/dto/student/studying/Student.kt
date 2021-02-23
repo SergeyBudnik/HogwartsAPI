@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class Student @JsonCreator constructor(
         @JsonProperty("login") val login: String,
         @JsonProperty("person") val person: Person,
+        @JsonProperty("managerLogin") val managerLogin: String,
         @JsonProperty("educationInfo") val educationInfo: EducationInfo,
         @JsonProperty("studentGroups") val studentGroups: List<StudentGroup>,
         @JsonProperty("statusType") val statusType: StudentStatusType

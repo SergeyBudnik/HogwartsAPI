@@ -12,7 +12,8 @@ object StudentAttendanceModelConverter {
                 finishTime = studentAttendanceModel.id.finishTime,
                 type = studentAttendanceModel.type,
                 groupType = studentAttendanceModel.groupType,
-                studentsInGroup = studentAttendanceModel.studentsInGroup
+                studentsInGroup = studentAttendanceModel.studentsInGroup,
+                ignoreSingleStudentPricing = studentAttendanceModel.ignoreSingleStudentPricing
         )
     }
 }
