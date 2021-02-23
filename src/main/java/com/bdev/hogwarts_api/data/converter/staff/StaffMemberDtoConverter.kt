@@ -10,6 +10,7 @@ object StaffMemberDtoConverter {
         staffMemberModel.login = staffMember.login
         staffMemberModel.personId = personId
         staffMemberModel.salaryIn30m = staffMember.salaryIn30m
+        staffMemberModel.subscribeToFreeLessonRequest = staffMember.subscriptions.freeLessonRequest
 
         return staffMemberModel
     }

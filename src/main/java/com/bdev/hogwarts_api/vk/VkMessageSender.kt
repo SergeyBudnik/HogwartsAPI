@@ -38,11 +38,6 @@ class VkMessageSender {
 
             val groupActor = GroupActor(groupId, groupSecretKey)
 
-            vk.users()
-                    .get(groupActor)
-                    .userIds("serge_budnik")
-                    .build()
-
             vk.messages()
                     .send(groupActor)
                     .userId(userId)

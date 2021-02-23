@@ -17,4 +17,7 @@ open class StaffMemberModel {
 
     @Column(name = "SALARY_IN_30_M", nullable = false)
     var salaryIn30m: Int = 0
+
+    @Column(name = "SUBS_FREE_LESSON_REQUEST")
+    var subscribeToFreeLessonRequest: Boolean = false
 }
