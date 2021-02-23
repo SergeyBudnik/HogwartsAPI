@@ -11,6 +11,8 @@ data class GroupLesson @JsonCreator constructor(
         @JsonProperty("startTime") val startTime: LessonTime,
         @JsonProperty("finishTime") val finishTime: LessonTime,
         @JsonProperty("teacherLogin") val teacherLogin: String,
+        @JsonProperty("ignoreSingleStudentPricing") val ignoreSingleStudentPricing: Boolean,
+        @JsonProperty("online") val isOnline: Boolean,
         @JsonProperty("creationTime") val creationTime: Long,
         @JsonProperty("deactivationTime") val deactivationTime: Long
 )

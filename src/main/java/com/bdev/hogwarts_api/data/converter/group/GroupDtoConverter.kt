@@ -29,6 +29,8 @@ object GroupDtoConverter {
         groupLessonModel.id = lesson.id
         groupLessonModel.group = groupModel
         groupLessonModel.teacherLogin = lesson.teacherLogin
+        groupLessonModel.isOnline = lesson.isOnline
+        groupLessonModel.ignoreSingleStudentPricing = lesson.ignoreSingleStudentPricing
         groupLessonModel.day = lesson.day
         groupLessonModel.startTime = lesson.startTime
         groupLessonModel.finishTime = lesson.finishTime

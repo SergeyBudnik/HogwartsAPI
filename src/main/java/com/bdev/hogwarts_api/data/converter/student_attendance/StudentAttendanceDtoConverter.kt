@@ -14,7 +14,8 @@ object StudentAttendanceDtoConverter {
                 ),
                 type = studentAttendance.type,
                 groupType = studentAttendance.groupType,
-                studentsInGroup = studentAttendance.studentsInGroup
+                studentsInGroup = studentAttendance.studentsInGroup,
+                ignoreSingleStudentPricing = studentAttendance.ignoreSingleStudentPricing
         )
     }
 }

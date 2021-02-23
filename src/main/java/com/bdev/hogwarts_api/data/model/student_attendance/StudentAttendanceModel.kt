@@ -35,13 +35,16 @@ data class StudentAttendanceModel(
         @Enumerated(EnumType.STRING)
         val groupType: GroupType,
         @Column(name = "STUDENTS_IN_GROUP")
-        val studentsInGroup: Int
+        val studentsInGroup: Int,
+        @Column(name = "IGNORE_SINGLE_STUDENT_PRICING")
+        val ignoreSingleStudentPricing: Boolean
 ) {
     @Suppress("unused")
     constructor(): this(
             id = StudentAttendanceModelId(),
             type = StudentAttendanceType.VISITED,
             groupType = GroupType.GROUP,
-            studentsInGroup = 0
+            studentsInGroup = 0,
+            ignoreSingleStudentPricing = false
     )
 }

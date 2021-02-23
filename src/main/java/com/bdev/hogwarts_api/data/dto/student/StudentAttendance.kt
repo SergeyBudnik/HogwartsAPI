@@ -16,5 +16,6 @@ data class StudentAttendance @JsonCreator constructor(
         @JsonProperty("groupType") val groupType: GroupType,
         @JsonProperty("studentsInGroup") val studentsInGroup: Int,
         @JsonProperty("startTime") val startTime: Long,
-        @JsonProperty("finishTime") val finishTime: Long
+        @JsonProperty("finishTime") val finishTime: Long,
+        @JsonProperty("ignoreSingleStudentPricing") val ignoreSingleStudentPricing: Boolean
 )
