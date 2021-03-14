@@ -24,14 +24,8 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
         private val staffMemberDao: StaffMemberDao
 ) : StaffMemberStorageService {
     override fun getAllStaffMembers(): List<StaffMember> {
-        val personsMap = personStorageService.getAllPersons().map { it.id to it }.toMap()
-
         return staffMemberDao.findAll().mapNotNull {
-            val person = personsMap[it.personId]
-
-            if (person == null) {
-                null
-            } else {
+            personStorageService.withExistingPerson(it.personId) { person ->
                 StaffMemberModelConverter.convertExisting(
                         staffMemberModel = it,
                         person = person
@@ -46,11 +40,7 @@ open class StaffMemberStorageServiceImpl @Autowired constructor(
         return if (staffMemberModel == null) {
             null
         } else {
-            val person = personStorageService.getPerson(staffMemberModel.personId)
-
-            return if (person == null) {
-                null
-            } else {
+            return personStorageService.withExistingPerson(staffMemberModel.personId) { person ->
                 StaffMemberModelConverter.convertExisting(
                         staffMemberModel = staffMemberModel,
                         person = person

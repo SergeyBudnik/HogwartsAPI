@@ -8,13 +8,14 @@ object StudentAttendanceDtoConverter {
     fun convert(studentAttendance: StudentAttendance): StudentAttendanceModel {
         return StudentAttendanceModel(
                 id = StudentAttendanceModelId(
-                        studentId = studentAttendance.studentId,
-                        startTime = studentAttendance.startTime
+                        studentLogin = studentAttendance.studentLogin,
+                        startTime = studentAttendance.startTime,
+                        finishTime = studentAttendance.finishTime
                 ),
                 type = studentAttendance.type,
                 groupType = studentAttendance.groupType,
                 studentsInGroup = studentAttendance.studentsInGroup,
-                finishTime = studentAttendance.finishTime
+                ignoreSingleStudentPricing = studentAttendance.ignoreSingleStudentPricing
         )
     }
 }

@@ -4,7 +4,7 @@ import com.bdev.hogwarts_api.data.dto.student.StudentStatus
 
 interface StudentStatusService {
     fun getAllStudentsStatuses(): List<StudentStatus>
-    fun getAllStudentStatuses(studentId: Long): List<StudentStatus>
-    fun getStudentStatus(studentId: Long): StudentStatus?
+    fun getAllStudentStatuses(studentLogin: String): List<StudentStatus>
+    fun getStudentStatus(studentLogin: String): StudentStatus?
     fun changeStudentStatus(studentStatus: StudentStatus)
 }

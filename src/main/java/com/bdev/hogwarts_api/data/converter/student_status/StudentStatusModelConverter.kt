@@ -7,7 +7,7 @@ object StudentStatusModelConverter {
     fun convert(studentStatusModel: StudentStatusModel): StudentStatus {
         return StudentStatus(
                 id = studentStatusModel.id,
-                studentId = studentStatusModel.studentId ?: throw RuntimeException(),
+                studentLogin = studentStatusModel.studentLogin ?: "",
                 status = studentStatusModel.status,
                 creationTime = studentStatusModel.creationTime,
                 actionTime = studentStatusModel.actionTime

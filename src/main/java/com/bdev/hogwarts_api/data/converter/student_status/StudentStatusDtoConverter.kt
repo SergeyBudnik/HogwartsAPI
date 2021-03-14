@@ -8,7 +8,7 @@ object StudentStatusDtoConverter {
         val studentStatusModel = StudentStatusModel()
 
         studentStatusModel.id = studentStatus.id
-        studentStatusModel.studentId = studentStatus.studentId
+        studentStatusModel.studentLogin = studentStatus.studentLogin
         studentStatusModel.status = studentStatus.status
         studentStatusModel.creationTime = studentStatus.creationTime
         studentStatusModel.actionTime = studentStatus.actionTime

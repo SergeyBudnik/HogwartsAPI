@@ -14,7 +14,6 @@ object GroupDtoConverter {
         groupModel.id = group.id
         groupModel.cabinetId = group.cabinetId
         groupModel.headTeacherLogin = group.headTeacherLogin
-        groupModel.bookName = toBase64(group.bookName)
         groupModel.type = group.type
         groupModel.lessons = group.lessons.map { it -> convertLesson(groupModel, it) }.toMutableList()
         groupModel.age = group.age
@@ -30,10 +29,12 @@ object GroupDtoConverter {
         groupLessonModel.id = lesson.id
         groupLessonModel.group = groupModel
         groupLessonModel.teacherLogin = lesson.teacherLogin
+        groupLessonModel.isOnline = lesson.isOnline
+        groupLessonModel.ignoreSingleStudentPricing = lesson.ignoreSingleStudentPricing
         groupLessonModel.day = lesson.day
         groupLessonModel.startTime = lesson.startTime
         groupLessonModel.finishTime = lesson.finishTime
-        groupLessonModel.creationTime = if (lesson.id == null) { Date().time } else { lesson.creationTime }
+        groupLessonModel.creationTime = lesson.creationTime
         groupLessonModel.deactivationTime = lesson.deactivationTime
 
         return groupLessonModel

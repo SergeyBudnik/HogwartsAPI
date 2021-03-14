@@ -6,5 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class StaffMember @JsonCreator constructor(
         @JsonProperty("login") val login: String,
-        @JsonProperty("person") val person: Person
+        @JsonProperty("person") val person: Person,
+        @JsonProperty("salaryIn30m") val salaryIn30m: Int,
+        @JsonProperty("subscriptions") val subscriptions: StaffMemberSubscriptions
 )

@@ -10,7 +10,6 @@ object GroupModelConverter {
     fun convert(groupModel: GroupModel): Group {
         return Group(
                 id = groupModel.id,
-                bookName = fromBase64(groupModel.bookName ?: ""),
                 type = groupModel.type ?: throw RuntimeException(),
                 cabinetId = groupModel.cabinetId ?: throw RuntimeException(),
                 headTeacherLogin = groupModel.headTeacherLogin ?: "",
@@ -25,11 +24,13 @@ object GroupModelConverter {
         return GroupLesson(
                 id = groupLessonModel.id,
                 teacherLogin = groupLessonModel.teacherLogin ?: "",
+                isOnline = groupLessonModel.isOnline ?: false,
+                ignoreSingleStudentPricing = groupLessonModel.ignoreSingleStudentPricing ?: false,
                 day = groupLessonModel.day ?: throw RuntimeException(),
                 startTime = groupLessonModel.startTime ?: throw RuntimeException(),
                 finishTime = groupLessonModel.finishTime  ?: throw RuntimeException(),
-                creationTime = groupLessonModel.creationTime ?: -1,
-                deactivationTime = groupLessonModel.deactivationTime
+                creationTime = groupLessonModel.creationTime ?: throw RuntimeException(),
+                deactivationTime = groupLessonModel.deactivationTime ?: throw RuntimeException()
         )
     }
 }

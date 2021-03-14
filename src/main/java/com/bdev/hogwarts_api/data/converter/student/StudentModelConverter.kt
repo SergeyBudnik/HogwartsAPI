@@ -1,27 +1,35 @@
 package com.bdev.hogwarts_api.data.converter.student
 
-import com.bdev.hogwarts_api.data.dto.student.Student
+import com.bdev.hogwarts_api.data.dto.Age
+import com.bdev.hogwarts_api.data.dto.EducationLevel
+import com.bdev.hogwarts_api.data.dto.education.EducationInfo
+import com.bdev.hogwarts_api.data.dto.person.Person
 import com.bdev.hogwarts_api.data.dto.student.StudentGroup
-import com.bdev.hogwarts_api.data.model.student.StudentModel
-import com.bdev.hogwarts_api.data.model.student_status.StudentStatusModel
-import com.bdev.hogwarts_api.utils.EncodingUtils.fromBase64
+import com.bdev.hogwarts_api.data.dto.student.StudentStatusType
+import com.bdev.hogwarts_api.data.dto.student.studying.Student
+import com.bdev.hogwarts_api.data.model.student.studying.StudentGroupReferenceModel
+import com.bdev.hogwarts_api.data.model.student.studying.StudentModel
 
 object StudentModelConverter {
-    fun convert(studentModel: StudentModel, studentStatusModel: StudentStatusModel): Student {
+    fun convert(studentModel: StudentModel, person: Person): Student {
         return Student(
-                id = studentModel.id,
-                studentGroups = studentModel.studentGroups.map { StudentGroup(
-                        groupId = it.groupId,
-                        startTime = it.startTime ?: throw RuntimeException(),
-                        finishTime = it.finishTime
-                ) },
-                name = fromBase64(studentModel.name ?: throw RuntimeException()),
-                statusType = studentStatusModel.status,
-                phones = studentModel.phones.map { it -> fromBase64(it.value) },
-                emails = studentModel.emails.map { it -> fromBase64(it.value) },
-                vkLink = studentModel.vkLink ?: "",
-                educationLevel = studentModel.educationLevel,
-                age = studentModel.age
+                login = studentModel.login,
+                person = person,
+                managerLogin = studentModel.managerLogin,
+                educationInfo = EducationInfo(
+                        level = EducationLevel.fromId(studentModel.educationLevel) ?: EducationLevel.UNKNOWN,
+                        age = Age.fromId(studentModel.educationAge  ) ?: Age.UNKNOWN
+                ),
+                studentGroups = studentModel.studentGroups.map { convertGroups(it) },
+                statusType = StudentStatusType.fromId(studentModel.statusType) ?: StudentStatusType.STUDYING
+        )
+    }
+
+    private fun convertGroups(studentGroupReferenceModel: StudentGroupReferenceModel): StudentGroup {
+        return StudentGroup(
+                groupId = studentGroupReferenceModel.groupId,
+                startTime = studentGroupReferenceModel.startTime,
+                finishTime = studentGroupReferenceModel.finishTime
         )
     }
 }

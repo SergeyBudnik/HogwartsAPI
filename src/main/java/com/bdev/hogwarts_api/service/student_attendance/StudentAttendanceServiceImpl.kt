@@ -4,49 +4,37 @@ import com.bdev.hogwarts_api.dao.StudentAttendanceDao
 import com.bdev.hogwarts_api.data.converter.student_attendance.StudentAttendanceDtoConverter
 import com.bdev.hogwarts_api.data.converter.student_attendance.StudentAttendanceModelConverter
 import com.bdev.hogwarts_api.data.dto.student.StudentAttendance
+import com.bdev.hogwarts_api.data.dto.student.StudentAttendanceId
 import com.bdev.hogwarts_api.data.model.student_attendance.StudentAttendanceModelId
-import com.bdev.hogwarts_api.service.student.StudentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.lang.String.format
 
 @Service
-class StudentAttendanceServiceImpl : StudentAttendanceService {
-    @Autowired
-    private lateinit var studentAttendanceDao: StudentAttendanceDao
-
-    @Autowired
-    private lateinit var studentService: StudentService
-
+class StudentAttendanceServiceImpl @Autowired constructor(
+        private val studentAttendanceDao: StudentAttendanceDao
+): StudentAttendanceService {
     override fun getAllAttendances(): List<StudentAttendance> {
         return studentAttendanceDao
                 .findAll()
                 .map { StudentAttendanceModelConverter.convert(it) }
     }
 
-    override fun getAttendances(studentId: Long): List<StudentAttendance> {
-        if (!studentService.exists(studentId)) {
-            throw RuntimeException(format("Student with id '%d' does not exist", studentId))
-        }
-
+    override fun getStudentAttendances(studentLogin: String): List<StudentAttendance> {
         return studentAttendanceDao
-                .getAllByIdStudentId(studentId)
+                .getAllByIdStudentLogin(studentLogin)
                 .map { StudentAttendanceModelConverter.convert(it) }
     }
 
     override fun addAttendance(attendance: StudentAttendance) {
-        if (!studentService.exists(attendance.studentId)) {
-            throw RuntimeException(format("Student with id '%d' does not exist", attendance.studentId))
-        }
-
         studentAttendanceDao.save(StudentAttendanceDtoConverter.convert(attendance))
     }
 
-    override fun deleteAttendance(studentId: Long, startTime: Long) {
+    override fun deleteAttendance(attendanceId: StudentAttendanceId) {
         studentAttendanceDao.delete(
                 StudentAttendanceModelId(
-                        studentId = studentId,
-                        startTime = startTime
+                        studentLogin = attendanceId.studentLogin,
+                        startTime = attendanceId.startTime,
+                        finishTime = attendanceId.finishTime
                 )
         )
     }

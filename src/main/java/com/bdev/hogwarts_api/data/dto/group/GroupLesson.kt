@@ -5,12 +5,14 @@ import com.bdev.hogwarts_api.data.dto.common.LessonTime
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class GroupLesson @JsonCreator constructor(
+data class GroupLesson @JsonCreator constructor(
         @JsonProperty("id") val id: Long?,
         @JsonProperty("day") val day: DayOfWeek,
         @JsonProperty("startTime") val startTime: LessonTime,
         @JsonProperty("finishTime") val finishTime: LessonTime,
         @JsonProperty("teacherLogin") val teacherLogin: String,
+        @JsonProperty("ignoreSingleStudentPricing") val ignoreSingleStudentPricing: Boolean,
+        @JsonProperty("online") val isOnline: Boolean,
         @JsonProperty("creationTime") val creationTime: Long,
-        @JsonProperty("deactivationTime") val deactivationTime: Long?
+        @JsonProperty("deactivationTime") val deactivationTime: Long
 )
