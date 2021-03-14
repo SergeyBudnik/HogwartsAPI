@@ -5,7 +5,7 @@ import com.bdev.hogwarts_api.data.dto.person.Person
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class NewStudentOnBoarding @JsonCreator constructor(
+data class NewStudentOnBoarding @JsonCreator constructor(
         @JsonProperty("info") val info: StudentOnBoardingInfo,
         @JsonProperty("action") val action: NewStudentOnBoardingAction
 )
