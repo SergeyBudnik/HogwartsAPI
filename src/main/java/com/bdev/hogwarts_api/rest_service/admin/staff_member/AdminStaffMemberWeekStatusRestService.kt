@@ -3,6 +3,7 @@ package com.bdev.hogwarts_api.rest_service.admin.staff_member
 import acropollis.municipali.security.common.dto.MunicipaliUserInfo
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatus
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatusId
+import com.bdev.hogwarts_api.service.staff.StaffMemberStorageService
 import com.bdev.hogwarts_api.service.staff_member.week_status.StaffMemberWeekStatusStorageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -14,28 +15,29 @@ interface AdminStaffMemberWeekStatusRestService {
     fun getAllForStaffMember(
         userInfo: MunicipaliUserInfo,
         staffMemberLogin: String
-    ): ResponseEntity<List<StaffMemberWeekStatus>>
+    ): ResponseEntity<*>
 
     fun set(
         userInfo: MunicipaliUserInfo,
         staffMemberWeekStatus: StaffMemberWeekStatus
-    ): ResponseEntity<Nothing?>
+    ): ResponseEntity<*>
 
     fun delete(
         userInfo: MunicipaliUserInfo,
         staffMemberWeekStatusId: StaffMemberWeekStatusId
-    ): ResponseEntity<Nothing?>
+    ): ResponseEntity<*>
 }
 
 @Service
 open class AdminStaffMemberWeekStatusRestServiceImpl @Autowired constructor(
+    private val staffMemberStorageService: StaffMemberStorageService,
     private val staffMemberWeekStatusStorageService: StaffMemberWeekStatusStorageService
 ): AdminStaffMemberWeekStatusRestService {
     @Transactional(readOnly = true)
     override fun getAllForStaffMember(
         userInfo: MunicipaliUserInfo,
         staffMemberLogin: String
-    ): ResponseEntity<List<StaffMemberWeekStatus>> =
+    ): ResponseEntity<*> =
         ResponseEntity.ok(
             staffMemberWeekStatusStorageService.getAllForStaffMember(
                 staffMemberLogin = staffMemberLogin
@@ -46,20 +48,40 @@ open class AdminStaffMemberWeekStatusRestServiceImpl @Autowired constructor(
     override fun set(
         userInfo: MunicipaliUserInfo,
         staffMemberWeekStatus: StaffMemberWeekStatus
-    ): ResponseEntity<Nothing?> {
-        staffMemberWeekStatusStorageService.set(staffMemberWeekStatus = staffMemberWeekStatus)
+    ): ResponseEntity<*> {
+        val staffMember = staffMemberStorageService.getStaffMember(login = staffMemberWeekStatus.id.staffMemberLogin)
 
-        return ResponseEntity.status(HttpStatus.OK).build()
+        return if (staffMember != null) {
+            staffMemberWeekStatusStorageService.set(
+                staffMemberWeekStatus = staffMemberWeekStatus
+            )
+
+            ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Success")
+        } else {
+            ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Staff member by login '${staffMemberWeekStatus.id.staffMemberLogin}' does not exist")
+        }
     }
 
     override fun delete(
         userInfo: MunicipaliUserInfo,
         staffMemberWeekStatusId: StaffMemberWeekStatusId
-    ): ResponseEntity<Nothing?> {
-        staffMemberWeekStatusStorageService.delete(
+    ): ResponseEntity<*> {
+        val deleted = staffMemberWeekStatusStorageService.delete(
             staffMemberWeekStatusId = staffMemberWeekStatusId
         )
 
-        return ResponseEntity.status(HttpStatus.OK).build()
+        return if (deleted) {
+            ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Success")
+        } else {
+            ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Staff member week status does not exist for the given id")
+        }
     }
 }

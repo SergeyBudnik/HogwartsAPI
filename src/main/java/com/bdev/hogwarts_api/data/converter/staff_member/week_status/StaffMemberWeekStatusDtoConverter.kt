@@ -10,7 +10,7 @@ object StaffMemberWeekStatusDtoConverter {
     fun convert(dto: StaffMemberWeekStatus): StaffMemberWeekStatusModel =
         StaffMemberWeekStatusModel(
             id = convertId(dto = dto.id),
-            type = StaffMemberWeekStatusType.OPENED
+            type = dto.type
         )
 
     fun convertId(dto: StaffMemberWeekStatusId): StaffMemberWeekStatusModelId =

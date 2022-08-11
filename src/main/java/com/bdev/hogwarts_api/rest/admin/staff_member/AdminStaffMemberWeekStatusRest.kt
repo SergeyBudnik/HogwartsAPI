@@ -20,7 +20,7 @@ class AdminStaffMemberWeekStatusRest @Autowired constructor(
     fun getAllStaffMembers(
         @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
         @PathVariable("staffMemberLogin") staffMemberLogin: String
-    ): ResponseEntity<List<StaffMemberWeekStatus>> = staffMemberWeekStatusRestService.getAllForStaffMember(
+    ): ResponseEntity<*> = staffMemberWeekStatusRestService.getAllForStaffMember(
         userInfo = getUserInfo(authToken = authToken),
         staffMemberLogin = staffMemberLogin
     )
@@ -29,7 +29,7 @@ class AdminStaffMemberWeekStatusRest @Autowired constructor(
     fun set(
         @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
         @RequestBody staffMemberWeekStatus: StaffMemberWeekStatus
-    ): ResponseEntity<Nothing?> = staffMemberWeekStatusRestService.set(
+    ): ResponseEntity<*> = staffMemberWeekStatusRestService.set(
         userInfo = getUserInfo(authToken = authToken),
         staffMemberWeekStatus = staffMemberWeekStatus
     )
@@ -38,7 +38,7 @@ class AdminStaffMemberWeekStatusRest @Autowired constructor(
     fun delete(
         @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
         @RequestBody staffMemberWeekStatusId: StaffMemberWeekStatusId
-    ): ResponseEntity<Nothing?> = staffMemberWeekStatusRestService.delete(
+    ): ResponseEntity<*> = staffMemberWeekStatusRestService.delete(
         userInfo = getUserInfo(authToken = authToken),
         staffMemberWeekStatusId = staffMemberWeekStatusId
     )
