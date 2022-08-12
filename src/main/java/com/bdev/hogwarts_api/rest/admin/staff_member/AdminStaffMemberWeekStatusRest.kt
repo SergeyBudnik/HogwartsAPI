@@ -11,8 +11,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/admin/staff-members/week-status")
-@Api(tags = ["Staff Members Week Status"], description = "PROTECTED")
+@RequestMapping("/admin/staff-members/week-statuses")
+@Api(tags = ["Admin: Staff Members Week Status"], description = "PROTECTED")
 class AdminStaffMemberWeekStatusRest @Autowired constructor(
     private val staffMemberWeekStatusRestService: AdminStaffMemberWeekStatusRestService
 ) : CommonRest() {
