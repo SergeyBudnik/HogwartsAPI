@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin/price-rules")
-@Api(tags = ["Admin: Price rules"], description = "PROTECTED")
+@Api(tags = ["Admin Price Rules"], description = "PROTECTED")
 class AdminPriceRuleRest @Autowired constructor(
     private val adminPriceRuleRestService: AdminPriceRuleRestService
 ): CommonRest() {

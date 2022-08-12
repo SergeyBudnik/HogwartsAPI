@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin/lesson-types")
-@Api(tags = ["Lesson types"], description = "PROTECTED")
+@Api(tags = ["Admin Lesson Types"], description = "PROTECTED")
 class AdminLessonTypeRest @Autowired constructor(
     private val adminLessonTypeRestService: AdminLessonTypeRestService
 ): CommonRest() {

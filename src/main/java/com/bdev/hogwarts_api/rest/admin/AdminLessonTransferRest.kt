@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/lesson-transfer")
-@Api(tags = ["Lesson Transfer"], description = "PROTECTED")
+@Api(tags = ["Admin Lessons Transfers"], description = "PROTECTED")
 class AdminLessonTransferRest {
     @Autowired
     lateinit var adminLessonTransferRestService: AdminLessonTransferRestService

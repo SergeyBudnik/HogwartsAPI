@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin/staff-members/week-statuses")
-@Api(tags = ["Admin: Staff Members Week Status"], description = "PROTECTED")
+@Api(tags = ["Admin Staff Members Week Statuses"], description = "PROTECTED")
 class AdminStaffMemberWeekStatusRest @Autowired constructor(
     private val staffMemberWeekStatusRestService: AdminStaffMemberWeekStatusRestService
 ) : CommonRest() {
