@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/groups")
-@Api(tags = ["Group"], description = "PROTECTED")
+@Api(tags = ["Admin Groups"], description = "PROTECTED")
 class AdminGroupRest : CommonRest() {
     @Autowired
     private lateinit var groupRestService: GroupRestService

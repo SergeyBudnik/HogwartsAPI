@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/login")
-@Api(tags = ["Login"], description = "PROTECTED")
+@Api(tags = ["Admin Login"], description = "PROTECTED")
 class AdminLoginRest : CommonRest() {
     @PostMapping("")
     public override fun login(@RequestBody credentials: MunicipaliUserCredentials): MunicipaliUserToken {

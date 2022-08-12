@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin/staff/member/management")
-@Api(tags = ["Staff", "Member", "Management"], description = "PROTECTED")
+@Api(tags = ["Admin Staff Members Management"], description = "PROTECTED")
 class AdminStaffMemberRest @Autowired constructor(
         private val staffMemberRestService: StaffMemberRestService
 ) : CommonRest() {

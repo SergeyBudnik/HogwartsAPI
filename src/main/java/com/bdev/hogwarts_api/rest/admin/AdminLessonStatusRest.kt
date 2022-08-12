@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/lesson-status")
-@Api(tags = ["Lesson Status"], description = "PROTECTED")
+@Api(tags = ["Admin Lessons Statuses"], description = "PROTECTED")
 class AdminLessonStatusRest : CommonRest() {
     @Autowired
     private lateinit var lessonStatusRestService: LessonStatusRestService
