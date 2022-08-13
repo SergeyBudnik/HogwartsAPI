@@ -1,7 +1,7 @@
 package com.bdev.hogwarts_api.data.dto.lesson
 
 enum class LessonStatusType {
-    CANCELED, MOVED, FINISHED
+    CANCELED, FINISHED
 }
 
 class LessonStatus(
