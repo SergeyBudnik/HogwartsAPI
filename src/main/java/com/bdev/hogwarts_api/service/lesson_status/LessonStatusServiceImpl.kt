@@ -18,6 +18,13 @@ open class LessonStatusServiceImpl : LessonStatusService {
                 .map { LessonStatusModelConverter.convert(it) }
     }
 
+    override fun getLessonStatus(lessonId: Long, lessonActionTime: Long): LessonStatus? {
+        return lessonStatusDao
+            .getAllByLessonIdAndActionTime(lessonId = lessonId, actionTime = lessonActionTime)
+            .maxBy { lessonStatusModel -> lessonStatusModel.id!! }
+            ?.let { lessonStatusModel -> LessonStatusModelConverter.convert(lessonStatusModel) }
+    }
+
     override fun addLessonStatus(lessonStatus: LessonStatus): Long {
         if (lessonStatus.id != null) {
             throw RuntimeException()

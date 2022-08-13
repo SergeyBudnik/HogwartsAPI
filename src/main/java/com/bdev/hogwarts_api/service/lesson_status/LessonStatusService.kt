@@ -4,5 +4,6 @@ import com.bdev.hogwarts_api.data.dto.lesson.LessonStatus
 
 interface LessonStatusService {
     fun getLessonsStatuses(from: Long, to: Long): List<LessonStatus>
+    fun getLessonStatus(lessonId: Long, lessonActionTime: Long): LessonStatus?
     fun addLessonStatus(lessonStatus: LessonStatus): Long
 }
