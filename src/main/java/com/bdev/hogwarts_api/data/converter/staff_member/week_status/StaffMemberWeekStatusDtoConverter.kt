@@ -16,7 +16,8 @@ object StaffMemberWeekStatusDtoConverter {
     fun convertId(dto: StaffMemberWeekStatusId): StaffMemberWeekStatusModelId =
         StaffMemberWeekStatusModelId(
             staffMemberLogin = dto.staffMemberLogin,
-            startTime = dto.startTime,
-            finishTime = dto.finishTime
+            weekIndex = dto.weekIndex,
+            month = dto.month,
+            year = dto.year
         )
 }
