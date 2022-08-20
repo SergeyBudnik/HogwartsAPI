@@ -9,8 +9,9 @@ object StaffMemberWeekStatusModelConverter {
         StaffMemberWeekStatus(
             id = StaffMemberWeekStatusId(
                 staffMemberLogin = model.id.staffMemberLogin,
-                startTime = model.id.startTime,
-                finishTime = model.id.finishTime
+                weekIndex = model.id.weekIndex,
+                month = model.id.month,
+                year = model.id.year
             ),
             type = model.type
         )

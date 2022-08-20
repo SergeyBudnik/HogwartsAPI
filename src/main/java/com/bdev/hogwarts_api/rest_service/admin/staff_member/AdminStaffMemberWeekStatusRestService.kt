@@ -4,12 +4,14 @@ import acropollis.municipali.security.common.dto.MunicipaliUserInfo
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatus
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatusId
 import com.bdev.hogwarts_api.service.staff.StaffMemberStorageService
+import com.bdev.hogwarts_api.service.staff_member.week_status.StaffMemberWeekStatusProviderService
 import com.bdev.hogwarts_api.service.staff_member.week_status.StaffMemberWeekStatusStorageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 interface AdminStaffMemberWeekStatusRestService {
     fun getAllForStaffMember(
@@ -31,7 +33,8 @@ interface AdminStaffMemberWeekStatusRestService {
 @Service
 open class AdminStaffMemberWeekStatusRestServiceImpl @Autowired constructor(
     private val staffMemberStorageService: StaffMemberStorageService,
-    private val staffMemberWeekStatusStorageService: StaffMemberWeekStatusStorageService
+    private val staffMemberWeekStatusStorageService: StaffMemberWeekStatusStorageService,
+    private val staffMemberWeekStatusProviderService: StaffMemberWeekStatusProviderService
 ): AdminStaffMemberWeekStatusRestService {
     @Transactional(readOnly = true)
     override fun getAllForStaffMember(
@@ -39,8 +42,9 @@ open class AdminStaffMemberWeekStatusRestServiceImpl @Autowired constructor(
         staffMemberLogin: String
     ): ResponseEntity<*> =
         ResponseEntity.ok(
-            staffMemberWeekStatusStorageService.getAllForStaffMember(
-                staffMemberLogin = staffMemberLogin
+            staffMemberWeekStatusProviderService.getStaffMemberWeekStatuses(
+                staffMemberLogin = staffMemberLogin,
+                calculationTime = Date().time
             )
         )
 

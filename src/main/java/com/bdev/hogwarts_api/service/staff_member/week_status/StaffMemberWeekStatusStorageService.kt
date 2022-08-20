@@ -18,10 +18,11 @@ interface StaffMemberWeekStatusStorageService {
 class StaffMemberWeekStatusStorageServiceImpl @Autowired constructor(
     private val staffMemberWeekStatusDao: StaffMemberWeekStatusDao
 ): StaffMemberWeekStatusStorageService {
-    override fun getAllForStaffMember(staffMemberLogin: String): List<StaffMemberWeekStatus> =
-        staffMemberWeekStatusDao
+    override fun getAllForStaffMember(staffMemberLogin: String): List<StaffMemberWeekStatus> {
+        return staffMemberWeekStatusDao
             .getAllByIdStaffMemberLogin(staffMemberLogin = staffMemberLogin)
             .map { model -> StaffMemberWeekStatusModelConverter.convert(model = model) }
+    }
 
     override fun set(staffMemberWeekStatus: StaffMemberWeekStatus) {
         staffMemberWeekStatusDao.save(
