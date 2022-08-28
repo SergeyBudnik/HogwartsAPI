@@ -120,6 +120,10 @@ class StaffMemberActionsProviderServiceImpl constructor(
         staffMember: StaffMember,
         lessonInstance: LessonInstance
     ): StaffMemberAction {
+        val durationIn30m = (lessonInstance.finishTime - lessonInstance.startTime) / (30 * 60 * 1000L)
+
+        println("$durationIn30m")
+
         return StaffMemberAction(
             staffMemberLogin = staffMember.login,
             startTime = lessonInstance.startTime,
@@ -129,7 +133,7 @@ class StaffMemberActionsProviderServiceImpl constructor(
             } else {
                 StaffMemberActionType.LESSON_CABINET
             },
-            price = staffMember.salaryIn30m,
+            price = (1.5 * staffMember.salaryIn30m * durationIn30m).toInt(),
             status = when (lessonInstance.status) {
                 LessonInstanceStatus.FINISHED -> StaffMemberActionStatus.FINISHED
                 LessonInstanceStatus.CANCELED -> StaffMemberActionStatus.CANCELED

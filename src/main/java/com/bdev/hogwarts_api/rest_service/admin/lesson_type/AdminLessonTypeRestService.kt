@@ -41,7 +41,7 @@ open class AdminLessonTypeRestServiceImpl @Autowired constructor(
     ): ResponseEntity<*> {
         lessonTypeStorageService.set(lessonType = lessonType)
 
-        return ResponseEntity.ok("Success")
+        return ResponseEntity<Nothing>(HttpStatus.OK)
     }
 
     @Transactional(readOnly = false)
@@ -52,8 +52,7 @@ open class AdminLessonTypeRestServiceImpl @Autowired constructor(
         val deleted = lessonTypeStorageService.delete(id = id)
 
         return if (deleted) {
-            ResponseEntity
-                .ok("Success")
+            ResponseEntity<Nothing>(HttpStatus.OK)
         } else {
             ResponseEntity
                 .status(HttpStatus.NOT_FOUND)

@@ -49,8 +49,7 @@ open class AdminPriceRuleRestServiceImpl @Autowired constructor(
         return if (lessonTypeExists) {
             priceRuleStorageService.set(priceRule = priceRule)
 
-            ResponseEntity
-                .ok("Success")
+            ResponseEntity<Nothing>(HttpStatus.OK)
         } else {
             ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
@@ -68,7 +67,7 @@ open class AdminPriceRuleRestServiceImpl @Autowired constructor(
         )
 
         return if (deleted) {
-            ResponseEntity.ok("Success")
+            ResponseEntity<Nothing>(HttpStatus.OK)
         } else {
             ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
