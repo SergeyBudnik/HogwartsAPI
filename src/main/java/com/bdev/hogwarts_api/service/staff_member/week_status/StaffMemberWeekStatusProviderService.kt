@@ -14,7 +14,15 @@ interface StaffMemberWeekStatusProviderService {
     fun getStaffMemberWeekStatuses(
         staffMemberLogin: String,
         calculationTime: Long
-    ): Map<MonthAndYear, Map<Week, StaffMemberWeekStatusType>>
+    ): Map<Int, Map<Month, Map<Int, StaffMemberWeekStatusType>>>
+
+    fun getStaffMemberWeekStatus(
+        staffMemberLogin: String,
+        year: Int,
+        month: Month,
+        weekIndex: Int,
+        calculationTime: Long
+    ): StaffMemberWeekStatusType?
 }
 
 @Service
@@ -24,8 +32,8 @@ class StaffMemberWeekStatusProviderServiceImpl @Autowired constructor(
     override fun getStaffMemberWeekStatuses(
         staffMemberLogin: String,
         calculationTime: Long
-    ): Map<MonthAndYear, Map<Week, StaffMemberWeekStatusType>> {
-        val result: MutableMap<MonthAndYear, Map<Week, StaffMemberWeekStatusType>> = HashMap()
+    ): Map<Int, Map<Month, Map<Int, StaffMemberWeekStatusType>>> {
+        val result: MutableMap<Int, Map<Month, Map<Int, StaffMemberWeekStatusType>>> = HashMap()
 
         val start = MonthAndYear(month = Month.SEP, year = 2021)
         val finish = MonthAndYear(month = Month.MAY, year = 2022)
@@ -35,7 +43,7 @@ class StaffMemberWeekStatusProviderServiceImpl @Autowired constructor(
         )
 
         getMonths(start = start, finish = finish).forEach { monthAndYear ->
-            val resultMonth: MutableMap<Week, StaffMemberWeekStatusType> = HashMap()
+            val monthMap: MutableMap<Int, StaffMemberWeekStatusType> = HashMap()
 
             getWeeks(monthAndYear = monthAndYear).forEach { week ->
                 val weekStatus = getWeekStatus(
@@ -45,13 +53,40 @@ class StaffMemberWeekStatusProviderServiceImpl @Autowired constructor(
                     calculationTime = calculationTime
                 )
 
-                resultMonth[week] = weekStatus
+                monthMap[week.index] = weekStatus
             }
 
-            result[monthAndYear] = resultMonth
+            result[monthAndYear.year] = result.getOrDefault(monthAndYear.year, emptyMap()).plus(
+                Pair(monthAndYear.month, monthMap)
+            )
         }
 
         return result
+    }
+
+    override fun getStaffMemberWeekStatus(
+        staffMemberLogin: String,
+        year: Int,
+        month: Month,
+        weekIndex: Int,
+        calculationTime: Long
+    ): StaffMemberWeekStatusType? {
+        val monthAndYear = MonthAndYear(year = year, month = month)
+
+        return getWeeks(monthAndYear = monthAndYear)
+            .getOrNull(weekIndex)
+            ?.let { week ->
+                val allWeekStatuses = staffMemberWeekStatusStorageService.getAllForStaffMember(
+                    staffMemberLogin = staffMemberLogin
+                )
+
+                getWeekStatus(
+                    week = week,
+                    monthAndYear = monthAndYear,
+                    allWeekStatuses = allWeekStatuses,
+                    calculationTime = calculationTime
+                )
+            }
     }
 
     private fun getWeekStatus(
@@ -64,10 +99,11 @@ class StaffMemberWeekStatusProviderServiceImpl @Autowired constructor(
             StaffMemberWeekStatusType.FUTURE
         } else {
             val weekStatus = allWeekStatuses.find { weekStatus ->
+                val weekIndexMatches = weekStatus.id.weekIndex == week.index
                 val monthMatches = weekStatus.id.month == monthAndYear.month
                 val yearMatches = weekStatus.id.year == monthAndYear.year
 
-                monthMatches && yearMatches
+                weekIndexMatches && monthMatches && yearMatches
             }
 
             weekStatus?.type ?: StaffMemberWeekStatusType.OPENED

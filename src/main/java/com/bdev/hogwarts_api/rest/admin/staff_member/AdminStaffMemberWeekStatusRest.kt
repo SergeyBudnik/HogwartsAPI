@@ -2,6 +2,7 @@ package com.bdev.hogwarts_api.rest.admin.staff_member
 
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatus
 import com.bdev.hogwarts_api.data.dto.staff_member.week_status.StaffMemberWeekStatusId
+import com.bdev.hogwarts_api.data.dto.time.Month
 import com.bdev.hogwarts_api.rest.CommonRest
 import com.bdev.hogwarts_api.rest_service.admin.staff_member.AdminStaffMemberWeekStatusRestService
 import io.swagger.annotations.Api
@@ -17,12 +18,27 @@ class AdminStaffMemberWeekStatusRest @Autowired constructor(
     private val staffMemberWeekStatusRestService: AdminStaffMemberWeekStatusRestService
 ) : CommonRest() {
     @GetMapping(value = ["/{staffMemberLogin}"])
-    fun getAllStaffMembers(
+    fun getAllForStaffMember(
         @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
         @PathVariable("staffMemberLogin") staffMemberLogin: String
     ): ResponseEntity<*> = staffMemberWeekStatusRestService.getAllForStaffMember(
         userInfo = getUserInfo(authToken = authToken),
         staffMemberLogin = staffMemberLogin
+    )
+
+    @GetMapping(value = ["/{staffMemberLogin}/{year}/{month}/{weekIndex}"])
+    fun getForStaffMember(
+        @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) authToken: String,
+        @PathVariable("staffMemberLogin") staffMemberLogin: String,
+        @PathVariable("year") year: Int,
+        @PathVariable("month") month: Month,
+        @PathVariable("weekIndex") weekIndex: Int
+    ): ResponseEntity<*> = staffMemberWeekStatusRestService.getForStaffMember(
+        userInfo = getUserInfo(authToken = authToken),
+        staffMemberLogin = staffMemberLogin,
+        year = year,
+        month = month,
+        weekIndex = weekIndex
     )
 
     @PostMapping(value = ["/"])
