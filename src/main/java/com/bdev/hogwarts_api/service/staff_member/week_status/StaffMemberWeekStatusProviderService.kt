@@ -35,8 +35,8 @@ class StaffMemberWeekStatusProviderServiceImpl @Autowired constructor(
     ): Map<Int, Map<Month, Map<Int, StaffMemberWeekStatusType>>> {
         val result: MutableMap<Int, Map<Month, Map<Int, StaffMemberWeekStatusType>>> = HashMap()
 
-        val start = MonthAndYear(month = Month.SEP, year = 2021)
-        val finish = MonthAndYear(month = Month.MAY, year = 2022)
+        val start = MonthAndYear(month = Month.SEP, year = 2022)
+        val finish = MonthAndYear(month = Month.JUN, year = 2023)
 
         val allWeekStatuses = staffMemberWeekStatusStorageService.getAllForStaffMember(
             staffMemberLogin = staffMemberLogin

@@ -3,7 +3,9 @@ package com.bdev.hogwarts_api.filter
 import javax.servlet.*
 import javax.servlet.http.HttpServletResponse
 import java.io.IOException
+import javax.servlet.annotation.WebFilter
 
+@WebFilter(urlPatterns = ["/*"])
 class CorsFilter : Filter {
     override fun init(filterConfig: FilterConfig) {}
 
