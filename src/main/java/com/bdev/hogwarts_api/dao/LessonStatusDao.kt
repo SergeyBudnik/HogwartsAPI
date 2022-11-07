@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface LessonStatusDao : JpaRepository<LessonStatusModel, Long> {
     fun getAllByActionTimeGreaterThanAndActionTimeLessThan(from: Long, to: Long): List<LessonStatusModel>
+    fun getAllByLessonIdAndActionTime(lessonId: Long, actionTime: Long): List<LessonStatusModel>
 }

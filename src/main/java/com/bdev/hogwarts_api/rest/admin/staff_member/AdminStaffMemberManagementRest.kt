@@ -1,4 +1,4 @@
-package com.bdev.hogwarts_api.rest.admin
+package com.bdev.hogwarts_api.rest.admin.staff_member
 
 import com.bdev.hogwarts_api.data.dto.staff.StaffMember
 import com.bdev.hogwarts_api.rest.CommonRest
@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/admin/staff/member/management")
-@Api(tags = ["Staff", "Member", "Management"], description = "PROTECTED")
-class AdminStaffMemberRest @Autowired constructor(
+@RequestMapping("/admin/staff-members/management")
+@Api(tags = ["Admin Staff Members Management"], description = "PROTECTED")
+class AdminStaffMemberManagementRest @Autowired constructor(
         private val staffMemberRestService: StaffMemberRestService
 ) : CommonRest() {
     @GetMapping("")

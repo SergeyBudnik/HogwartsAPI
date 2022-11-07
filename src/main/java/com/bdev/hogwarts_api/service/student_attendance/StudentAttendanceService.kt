@@ -6,6 +6,7 @@ import com.bdev.hogwarts_api.data.dto.student.StudentAttendanceId
 interface StudentAttendanceService {
     fun getAllAttendances(): List<StudentAttendance>
     fun getStudentAttendances(studentLogin: String): List<StudentAttendance>
+    fun getStudentAttendance(studentLogin: String, lessonTime: Long): StudentAttendance?
     fun addAttendance(attendance: StudentAttendance)
     fun deleteAttendance(attendanceId: StudentAttendanceId)
 }

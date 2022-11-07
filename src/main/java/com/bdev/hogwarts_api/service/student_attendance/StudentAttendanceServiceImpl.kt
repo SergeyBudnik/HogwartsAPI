@@ -25,6 +25,13 @@ class StudentAttendanceServiceImpl @Autowired constructor(
                 .map { StudentAttendanceModelConverter.convert(it) }
     }
 
+    override fun getStudentAttendance(studentLogin: String, lessonTime: Long): StudentAttendance? {
+        return studentAttendanceDao
+            .getAllByIdStudentLogin(studentLogin = studentLogin)
+            .find { studentAttendanceModel -> studentAttendanceModel.id.startTime == lessonTime }
+            ?.let { studentAttendanceModel -> StudentAttendanceModelConverter.convert(studentAttendanceModel) }
+    }
+
     override fun addAttendance(attendance: StudentAttendance) {
         studentAttendanceDao.save(StudentAttendanceDtoConverter.convert(attendance))
     }

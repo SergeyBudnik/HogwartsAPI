@@ -8,14 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-open class LessonStatusServiceImpl : LessonStatusService {
-    @Autowired
-    private lateinit var lessonStatusDao: LessonStatusDao
-
+class LessonStatusServiceImpl @Autowired constructor(
+    private val lessonStatusDao: LessonStatusDao
+): LessonStatusService {
     override fun getLessonsStatuses(from: Long, to: Long): List<LessonStatus> {
         return lessonStatusDao
                 .getAllByActionTimeGreaterThanAndActionTimeLessThan(from, to)
                 .map { LessonStatusModelConverter.convert(it) }
+    }
+
+    override fun getLessonStatus(lessonId: Long, lessonActionTime: Long): LessonStatus? {
+        return lessonStatusDao
+            .getAllByLessonIdAndActionTime(lessonId = lessonId, actionTime = lessonActionTime)
+            .maxByOrNull { lessonStatusModel -> lessonStatusModel.id!! }
+            ?.let { lessonStatusModel -> LessonStatusModelConverter.convert(lessonStatusModel) }
     }
 
     override fun addLessonStatus(lessonStatus: LessonStatus): Long {
@@ -24,7 +30,7 @@ open class LessonStatusServiceImpl : LessonStatusService {
         }
 
         return lessonStatusDao
-                .save(LessonStatusDtoConverter.convert(lessonStatus))
-                .id ?: throw RuntimeException()
+            .save(LessonStatusDtoConverter.convert(lessonStatus))
+            .id ?: throw RuntimeException()
     }
 }
